@@ -1,3 +1,3 @@
 # Pecunia
 
-Pecunia is a crypto wallet that focuses on enabling developers to create beautiful mobile-first dApps.
+Pecunia is a crypto wallet that focuses on making crypto more accessible to everyday users.
