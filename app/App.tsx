@@ -11,6 +11,8 @@ import Settings from './src/screens/Settings';
 import Onboarding from './src/screens/Onboarding';
 import Wallet from './src/screens/Wallet';
 
+import Icon, { getIconName } from './src/components/Icon';
+
 import { store } from './src/redux/store';
 
 enableScreens();
@@ -22,16 +24,9 @@ const MainNavigator = () => {
   return (
     <MainTab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => {
-          const getIcon = (routeName: string) => {
-            switch (routeName) {
-              default:
-                break;
-            }
-          };
-
-          return <Icon name={getIcon(route.name)} color={color} size={28} />;
-        }
+        tabBarIcon: ({ color }) => (
+          <Icon name={getIconName(route.name)} color={color} size={28} />
+        )
       })}
       tabBarOptions={{
         activeTintColor: 'black',
