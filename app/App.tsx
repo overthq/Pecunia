@@ -3,7 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { enableScreens } from 'react-native-screens';
 
 import Home from './src/screens/Home';
@@ -20,7 +20,25 @@ const MainTab = createBottomTabNavigator();
 
 const MainNavigator = () => {
   return (
-    <MainTab.Navigator>
+    <MainTab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color }) => {
+          const getIcon = (routeName: string) => {
+            switch (routeName) {
+              default:
+                break;
+            }
+          };
+
+          return <Icon name={getIcon(route.name)} color={color} size={28} />;
+        }
+      })}
+      tabBarOptions={{
+        activeTintColor: 'black',
+        inactiveTintColor: 'gray',
+        showLabel: false
+      }}
+    >
       <MainTab.Screen name='Home' component={Home} />
       <MainTab.Screen name='Settings' component={Settings} />
       <MainTab.Screen name='Wallet' component={Wallet} />
