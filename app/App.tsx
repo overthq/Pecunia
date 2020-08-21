@@ -10,6 +10,7 @@ import Home from './src/screens/Home';
 import Settings from './src/screens/Settings';
 import Onboarding from './src/screens/Onboarding';
 import Wallet from './src/screens/Wallet';
+import Import from './src/screens/Import';
 
 import Icon, { getIconName } from './src/components/Icon';
 
@@ -45,7 +46,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <AppStack.Navigator>
+        <AppStack.Navigator headerMode='none'>
+          <AppStack.Screen name='Import' component={Import} />
           <AppStack.Screen name='Onboarding' component={Onboarding} />
           <AppStack.Screen name='Main' component={MainNavigator} />
         </AppStack.Navigator>
