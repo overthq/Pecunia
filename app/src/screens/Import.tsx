@@ -7,19 +7,17 @@ import {
   ActivityIndicator,
   StyleSheet
 } from 'react-native';
-import ethers from 'ethers';
+import { importWalletFromSeedPhrase } from '../helpers/wallet';
 
-export const web3Provider = ethers.getDefaultProvider('homestead');
-
-const Import = () => {
+const Import: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const [seedPhrase, setSeedPhrase] = React.useState('');
 
   const handleSubmit = async () => {
     setLoading(true);
-    const hdnode = ethers.utils.HDNode.fromMnemonic(seedPhrase);
-    const node = hdnode.derivePath(`m/44'/60'/0'/0/0`);
-    const wallet = new ethers.Wallet(node.privateKey);
+
+    // Check if input is private key or seed phrase.
+    const wallet = importWalletFromSeedPhrase(seedPhrase);
 
     console.log(wallet);
 
@@ -29,12 +27,8 @@ const Import = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Import a wallet</Text>
-      <Text style={styles.description}>
-        Import your exisiting Ethereum wallet by entering your seed phrase or
-        private key below:
-      </Text>
       <TextInput
-        placeholder='Enter your seed phrase here (12 or 24 words)'
+        placeholder='Enter your seed phrase or private key'
         onChangeText={setSeedPhrase}
         multiline
         style={styles.textArea}
@@ -67,16 +61,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#505050'
   },
-  description: {
-    fontSize: 16
-  },
   textArea: {
-    // padding: 10,
-    fontSize: 16,
+    fontSize: 18,
     height: 100,
-    // borderColor: '#D3D3D3',
-    // borderRadius: 4,
-    // borderWidth: 2,
     marginVertical: 15
   },
   importButton: {

@@ -4,10 +4,17 @@ import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import thunk, { ThunkAction } from 'redux-thunk';
 import { persistStore, persistReducer } from 'redux-persist';
 
+import walletReducer from './wallet/reducer';
+import transactionsReducer from './transactions/reducer';
+
 const rootReducer = combineReducers({
   wallet: persistReducer(
     { key: 'wallet', storage: AsyncStorage },
-    (s = {}) => s
+    walletReducer
+  ),
+  transactions: persistReducer(
+    { key: 'transactions', storage: AsyncStorage },
+    transactionsReducer
   )
 });
 
