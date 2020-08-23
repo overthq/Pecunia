@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View,
+  KeyboardAvoidingView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -25,18 +25,19 @@ const Import: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.container} behavior='padding'>
       <Text style={styles.heading}>Import a wallet</Text>
       <TextInput
         placeholder='Enter your seed phrase or private key'
         onChangeText={setSeedPhrase}
+        autoFocus
         multiline
         style={styles.textArea}
       />
       <TouchableOpacity
         onPress={handleSubmit}
         disabled={loading || !seedPhrase}
-        style={styles.importButton}
+        style={[styles.importButton, !seedPhrase ? { opacity: 0.7 } : {}]}
       >
         {loading ? (
           <ActivityIndicator />
@@ -44,13 +45,15 @@ const Import: React.FC = () => {
           <Text style={styles.importButtonText}>Import wallet</Text>
         )}
       </TouchableOpacity>
-    </View>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
     paddingHorizontal: 20,
     paddingVertical: 40,
     backgroundColor: '#FFFFFF'
@@ -64,11 +67,11 @@ const styles = StyleSheet.create({
   textArea: {
     fontSize: 18,
     height: 100,
-    marginVertical: 15
+    marginVertical: 5
   },
   importButton: {
     height: 50,
-    borderRadius: 25,
+    borderRadius: 8,
     marginHorizontal: 20,
     width: '100%',
     backgroundColor: '#191919',
