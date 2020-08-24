@@ -3,10 +3,10 @@ import {
   KeyboardAvoidingView,
   Text,
   TextInput,
-  TouchableOpacity,
-  ActivityIndicator,
   StyleSheet
 } from 'react-native';
+
+import Button from '../components/Button';
 import { importWalletFromSeedPhrase } from '../helpers/wallet';
 
 const Import: React.FC = () => {
@@ -34,17 +34,12 @@ const Import: React.FC = () => {
         multiline
         style={styles.textArea}
       />
-      <TouchableOpacity
+      <Button
+        loading={loading}
+        disabled={!seedPhrase}
         onPress={handleSubmit}
-        disabled={loading || !seedPhrase}
-        style={[styles.importButton, !seedPhrase ? { opacity: 0.7 } : {}]}
-      >
-        {loading ? (
-          <ActivityIndicator />
-        ) : (
-          <Text style={styles.importButtonText}>Import wallet</Text>
-        )}
-      </TouchableOpacity>
+        text='Import wallet'
+      />
     </KeyboardAvoidingView>
   );
 };
@@ -68,21 +63,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     height: 100,
     marginVertical: 5
-  },
-  importButton: {
-    height: 50,
-    borderRadius: 8,
-    marginHorizontal: 20,
-    width: '100%',
-    backgroundColor: '#191919',
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center'
-  },
-  importButtonText: {
-    fontSize: 17,
-    fontWeight: '700',
-    color: '#FFFFFF'
   }
 });
 

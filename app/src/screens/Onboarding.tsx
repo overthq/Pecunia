@@ -9,6 +9,14 @@ const steps = [
   {
     title: 'Crypto made simple',
     description: ''
+  },
+  {
+    title: 'Get Started',
+    description: (
+      <View>
+        <Text>You can create a new wallet, or import an existing one.</Text>
+      </View>
+    )
   }
 ];
 
@@ -18,11 +26,11 @@ const Onboarding: React.FC = () => {
       <FlatList
         data={steps}
         horizontal
-        keyExtractor={(step) => step.title}
+        keyExtractor={step => step.title}
         renderItem={({ item }) => (
           <View>
-            <Text>{item.title}</Text>
-            <Text>{item.description}</Text>
+            <Text style={styles.title}>{item.title}</Text>
+            <Text style={styles.description}>{item.description}</Text>
           </View>
         )}
       />
@@ -33,6 +41,13 @@ const Onboarding: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  description: {
+    fontSize: 18
   }
 });
 

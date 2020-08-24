@@ -9,14 +9,12 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
   const wallet = new ethers.Wallet(node.privateKey);
 
   // Save private key to the keychain
-
   await SecureStore.setItemAsync('privateKey', wallet.privateKey);
 
-  // Get previous transactions if they exist, and update the Redux store
-  const hasPreviousTransactions = true;
+  // Save address to the keychain
+  await SecureStore.setItemAsync('pecuniaWalletAddress', wallet.address);
 
-  if (hasPreviousTransactions) {
-  }
+  // TODO: Get previous transactions if they exist, and update the Redux store
   return wallet;
 };
 
