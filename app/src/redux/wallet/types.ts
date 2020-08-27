@@ -1,17 +1,50 @@
-import { Wallet } from 'ethers';
+export const ACCOUNTS_LOADING = 'wallet/ACCOUNTS_LOADING';
+export const LOAD_ACCOUNTS = 'wallet/LOAD_ACCOUNTS';
+export const ADD_ACCOUNT = 'wallet/ADD_ACCOUNT';
+export const REMOVE_ACCOUNT = 'wallet/REMOVE_ACCOUNT';
 
-export const ADD_WALLET = 'wallet/ADD_WALLET';
-export const REMOVE_WALLET = 'wallet/REMOVE_WALLET';
+enum AccountType {
+  Current,
+  Savings,
+  Investment
+}
 
-interface AddWalletAction {
-  type: typeof ADD_WALLET;
+interface Account {
+  id: string;
+  name: string;
+  address: string;
+  type: AccountType;
+  index: number;
+  primary?: boolean;
+}
+
+interface AccountsLoadingAction {
+  type: typeof ACCOUNTS_LOADING;
+}
+
+interface LoadAccountsAction {
+  type: typeof LOAD_ACCOUNTS;
   payload: {
-    wallet: Wallet;
+    accounts: Account[];
   };
 }
 
-interface RemoveWalletAction {
-  type: typeof REMOVE_WALLET;
+interface AddAccountAction {
+  type: typeof ADD_ACCOUNT;
+  payload: {
+    account: Account;
+  };
 }
 
-export type WalletAction = AddWalletAction | RemoveWalletAction;
+interface RemoveAccountAction {
+  type: typeof REMOVE_ACCOUNT;
+  payload: {
+    accountId: string;
+  };
+}
+
+export type WalletAction =
+  | AccountsLoadingAction
+  | LoadAccountsAction
+  | AddAccountAction
+  | RemoveAccountAction;

@@ -1,21 +1,51 @@
 import ethers from 'ethers';
 import SecureStore from 'expo-secure-store';
 
+const DEFAULT_PATH = `m/44'/60'/0'/0`;
+
 export const web3Provider = ethers.getDefaultProvider('homestead');
 
 export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
   const hdnode = ethers.utils.HDNode.fromMnemonic(seedPhrase);
-  const node = hdnode.derivePath(`m/44'/60'/0'/0/0`);
+  const node = hdnode.derivePath(`${DEFAULT_PATH}/0`);
   const wallet = new ethers.Wallet(node.privateKey);
 
-  // Save private key to the keychain
-  await SecureStore.setItemAsync('privateKey', wallet.privateKey);
+  // Save private key to the keychain, using the wallet address as the key.
+  await SecureStore.setItemAsync(
+    `${wallet.address}-privateKey`,
+    wallet.privateKey
+  );
 
   // Save address to the keychain
   await SecureStore.setItemAsync('pecuniaWalletAddress', wallet.address);
 
-  // TODO: Get previous transactions if they exist, and update the Redux store
-  return wallet;
+  const accounts = [];
+
+  accounts.push({
+    id: '',
+    name: 'Default Name',
+    address: wallet.address,
+    index: 0,
+    primary: true
+  });
+
+  for (let i = 1; i >= 1; i++) {
+    const nextNode = hdnode.derivePath(`${DEFAULT_PATH}/{${i}`);
+    const nextWallet = new ethers.Wallet(nextNode.privateKey);
+
+    // Check if wallet has previous transactions using Etherscan API (imitate Rainbow's behaviour).
+    if (hasPreviousTransactions(nextWallet.address)) {
+      accounts.push({
+        id: '',
+        name: 'Default Name',
+        address: nextWallet.address,
+        index: i,
+        primary: false
+      });
+    }
+  }
+
+  return accounts;
 };
 
 export const importWalletFromPrivateKey = (privateKey: string) => {
@@ -26,4 +56,8 @@ export const createWallet = () => {
   // Generate mnemonic seed phrase
   // Derive private key (and address).
   // Save to keychain
+};
+
+export const hasPreviousTransactions = (walletAddress: string) => {
+  return !!walletAddress;
 };

@@ -14,7 +14,7 @@ import Import from './src/screens/Import';
 
 import Icon, { getIconName } from './src/components/Icon';
 
-import { store } from './src/redux/store';
+import { store, useAppSelector } from './src/redux/store';
 
 enableScreens();
 
@@ -42,15 +42,28 @@ const MainNavigator = () => {
   );
 };
 
+const AppNavigator = () => {
+  const { hasAccounts } = useAppSelector(({ wallet }) => ({
+    hasAccounts: wallet.accounts.length !== 0
+  }));
+
+  return (
+    <AppStack.Navigator
+      headerMode='none'
+      initialRouteName={hasAccounts ? 'Main' : 'Onboarding'}
+    >
+      <AppStack.Screen name='Onboarding' component={Onboarding} />
+      <AppStack.Screen name='Main' component={MainNavigator} />
+      <AppStack.Screen name='Import' component={Import} />
+    </AppStack.Navigator>
+  );
+};
+
 const App = () => {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <AppStack.Navigator headerMode='none'>
-          <AppStack.Screen name='Import' component={Import} />
-          <AppStack.Screen name='Onboarding' component={Onboarding} />
-          <AppStack.Screen name='Main' component={MainNavigator} />
-        </AppStack.Navigator>
+        <AppNavigator />
       </NavigationContainer>
     </Provider>
   );
