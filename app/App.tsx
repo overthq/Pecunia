@@ -4,11 +4,11 @@ import { Provider } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
 
 import Home from './src/screens/Home';
 import Settings from './src/screens/Settings';
-import Onboarding from './src/screens/Onboarding';
 import Wallet from './src/screens/Wallet';
 import Import from './src/screens/Import';
 
@@ -50,11 +50,10 @@ const AppNavigator = () => {
   return (
     <AppStack.Navigator
       headerMode='none'
-      initialRouteName={hasAccounts ? 'Main' : 'Onboarding'}
+      initialRouteName={hasAccounts ? 'Main' : 'Import'}
     >
-      <AppStack.Screen name='Onboarding' component={Onboarding} />
-      <AppStack.Screen name='Main' component={MainNavigator} />
       <AppStack.Screen name='Import' component={Import} />
+      <AppStack.Screen name='Main' component={MainNavigator} />
     </AppStack.Navigator>
   );
 };
@@ -62,9 +61,11 @@ const AppNavigator = () => {
 const App = () => {
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <AppNavigator />
-      </NavigationContainer>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <AppNavigator />
+        </NavigationContainer>
+      </SafeAreaProvider>
     </Provider>
   );
 };
