@@ -12,12 +12,12 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
 
   // Save private key to the keychain, using the wallet address as the key.
   await SecureStore.setItemAsync(
-    `${wallet.address}-privateKey`,
+    `${wallet.address}-private-key`,
     wallet.privateKey
   );
 
   // Save address to the keychain
-  await SecureStore.setItemAsync('pecuniaWalletAddress', wallet.address);
+  await SecureStore.setItemAsync('pecunia-wallet-address', wallet.address);
 
   const accounts = [];
 
@@ -30,20 +30,29 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
   });
 
   for (let i = 1; i >= 1; i++) {
-    const nextNode = hdnode.derivePath(`${DEFAULT_PATH}/{${i}`);
+    const nextNode = hdnode.derivePath(`${DEFAULT_PATH}/${i}`);
     const nextWallet = new ethers.Wallet(nextNode.privateKey);
+
+    // Save private key to keychain.
+    await SecureStore.setItemAsync(
+      `${nextWallet.address}-private-key`,
+      nextWallet.privateKey
+    );
 
     // Check if wallet has previous transactions using Etherscan API (imitate Rainbow's behaviour).
     if (hasPreviousTransactions(nextWallet.address)) {
       accounts.push({
-        id: '',
+        index: i,
         name: 'Default Name',
         address: nextWallet.address,
-        index: i,
         primary: false
       });
+    } else {
+      break;
     }
   }
+
+  await SecureStore.setItemAsync('pecunia-accounts', JSON.stringify(accounts));
 
   return accounts;
 };
