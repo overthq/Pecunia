@@ -22,10 +22,9 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
   const accounts = [];
 
   accounts.push({
-    id: '',
-    name: 'Default Name',
-    address: wallet.address,
     index: 0,
+    name: 'Main Account',
+    address: wallet.address,
     primary: true
   });
 
@@ -43,7 +42,7 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
     if (hasPreviousTransactions(nextWallet.address)) {
       accounts.push({
         index: i,
-        name: 'Default Name',
+        name: `Sub Account ${i}`,
         address: nextWallet.address,
         primary: false
       });
@@ -67,6 +66,25 @@ export const createWallet = () => {
   // Save to keychain
 };
 
-export const hasPreviousTransactions = (walletAddress: string) => {
-  return !!walletAddress;
+const ETHERSCAN_API_KEY = '';
+
+// Utility function borrowed from: https://github.com/rainbow-me/rainbow/blob/develop/src/utils/ethereumUtils.js
+export const hasPreviousTransactions = async (walletAddress: string) => {
+  try {
+    const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${walletAddress}&tag=latest&page=1&offset=1&apikey=${ETHERSCAN_API_KEY}`;
+    const response = await fetch(url);
+    const parsedResponse = await response.json();
+
+    // Timeout needed to avoid the 5 requests / second rate limit of etherscan API
+
+    setTimeout(() => {
+      if (parsedResponse.status !== '0' && parsedResponse.result.length > 0) {
+        return true;
+      }
+
+      return false;
+    }, 260);
+  } catch (e) {
+    return false;
+  }
 };
