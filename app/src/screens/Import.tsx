@@ -5,21 +5,24 @@ import {
   TextInput,
   StyleSheet
 } from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import Button from '../components/Button';
 import { importWalletFromSeedPhrase } from '../helpers/wallet';
+import { loadAllAccounts } from '../redux/wallet/actions';
 
 const Import: React.FC = () => {
   const [loading, setLoading] = React.useState(false);
   const [seedPhrase, setSeedPhrase] = React.useState('');
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async () => {
     setLoading(true);
 
     // Check if input is private key or seed phrase.
-    const wallet = importWalletFromSeedPhrase(seedPhrase);
-
-    console.log(wallet);
+    await importWalletFromSeedPhrase(seedPhrase);
+    dispatch(loadAllAccounts());
 
     setLoading(false);
   };

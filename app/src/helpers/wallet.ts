@@ -52,8 +52,6 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
   }
 
   await SecureStore.setItemAsync('pecunia-accounts', JSON.stringify(accounts));
-
-  return accounts;
 };
 
 export const importWalletFromPrivateKey = (privateKey: string) => {
@@ -84,7 +82,7 @@ export const hasPreviousTransactions = async (walletAddress: string) => {
 
       return false;
     }, 260);
-  } catch (e) {
+  } catch (error) {
     return false;
   }
 };

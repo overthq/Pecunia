@@ -1,6 +1,6 @@
 import SecureStore from 'expo-secure-store';
 import { AppThunk } from '../store';
-import { ACCOUNTS_LOADING, Account } from './types';
+import { ACCOUNTS_LOADING, Account, ADD_ACCOUNT } from './types';
 import { Alert } from 'react-native';
 
 export const loadAllAccounts = (): AppThunk => async dispatch => {
@@ -16,14 +16,16 @@ export const loadAllAccounts = (): AppThunk => async dispatch => {
   }
 };
 
-export const addAccount = (): AppThunk => async (dispatch, getState) => {
+export const addAccount = (account: Account): AppThunk => async dispatch => {
   dispatch({ type: ACCOUNTS_LOADING });
 
   try {
-    const accounts = await SecureStore.getItemAsync('pecuniaAccounts');
+    const accounts = await SecureStore.getItemAsync('pecunia-accounts');
     if (!accounts) {
-      // Add the account
+      // User has not set up application yet, and should probably be redirected to the import screen.
+      throw new Error('You have not set up your wallet yet.');
     }
+    dispatch({ type: ADD_ACCOUNT, payload: { account } });
   } catch (error) {
     Alert.alert(error.message);
   }

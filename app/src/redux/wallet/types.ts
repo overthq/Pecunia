@@ -3,13 +3,13 @@ export const LOAD_ACCOUNTS = 'wallet/LOAD_ACCOUNTS';
 export const ADD_ACCOUNT = 'wallet/ADD_ACCOUNT';
 export const REMOVE_ACCOUNT = 'wallet/REMOVE_ACCOUNT';
 
-enum AccountType {
+export enum AccountType {
   Current,
   Savings,
   Investment
 }
 
-interface Account {
+export interface Account {
   id: string;
   name: string;
   address: string;
