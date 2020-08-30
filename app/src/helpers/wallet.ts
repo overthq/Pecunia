@@ -64,7 +64,7 @@ export const createWallet = () => {
   // Save to keychain
 };
 
-const ETHERSCAN_API_KEY = '';
+const ETHERSCAN_API_KEY = 'DIQGW4SCMNG3EPIV7X93DQEXWY83G5MVXJ';
 
 // Utility function borrowed from: https://github.com/rainbow-me/rainbow/blob/develop/src/utils/ethereumUtils.js
 export const hasPreviousTransactions = async (walletAddress: string) => {
