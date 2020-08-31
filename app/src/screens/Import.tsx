@@ -6,6 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import { useDispatch } from 'react-redux';
+import { useNavigation } from '@react-navigation/native';
 
 import Button from '../components/Button';
 import { importWalletFromSeedPhrase } from '../helpers/wallet';
@@ -16,13 +17,16 @@ const Import: React.FC = () => {
   const [seedPhrase, setSeedPhrase] = React.useState('');
 
   const dispatch = useDispatch();
+  const { navigate } = useNavigation();
 
   const handleSubmit = async () => {
     setLoading(true);
 
-    // Check if input is private key or seed phrase.
+    // TODO: Check if input is private key or seed phrase.
     await importWalletFromSeedPhrase(seedPhrase);
     dispatch(loadAllAccounts());
+
+    navigate('Home');
 
     setLoading(false);
   };

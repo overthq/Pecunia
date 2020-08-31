@@ -1,9 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+import RecentTransactions from '../components/RecentTransactions';
+import { useAppSelector } from '../redux/store';
 
 const Home = () => {
+  const accounts = useAppSelector(({ wallet: { accounts } }) => accounts);
+
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
+      <Text>{JSON.stringify(accounts)}</Text>
+      <RecentTransactions />
       <View style={styles.fabContainer}>
         <TouchableOpacity style={styles.fab}>
           <Text style={styles.fabText}>Send</Text>
@@ -12,7 +20,7 @@ const Home = () => {
           <Text style={styles.fabText}>Request</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 };
 

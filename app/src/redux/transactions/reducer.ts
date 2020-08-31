@@ -8,8 +8,7 @@ import {
 
 const initialState: TransactionsState = {
   loading: false,
-  transactions: [],
-  errorMessage: ''
+  transactions: []
 };
 
 const transactionsReducer = (
