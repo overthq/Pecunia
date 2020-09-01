@@ -1,4 +1,4 @@
-import SecureStore from 'expo-secure-store';
+import * as SecureStore from 'expo-secure-store';
 import { AppThunk } from '../store';
 import { ACCOUNTS_LOADING, Account, ADD_ACCOUNT } from './types';
 import { Alert } from 'react-native';
@@ -7,7 +7,7 @@ export const loadAllAccounts = (): AppThunk => async dispatch => {
   dispatch({ type: ACCOUNTS_LOADING });
 
   try {
-    const accounts = await SecureStore.getItemAsync('pecuniaAccounts');
+    const accounts = await SecureStore.getItemAsync('pecunia-accounts');
     if (!accounts) throw new Error('No saved accounts.');
     return JSON.parse(accounts) as Account[];
   } catch (error) {

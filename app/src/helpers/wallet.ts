@@ -1,9 +1,16 @@
 import ethers from 'ethers';
-import SecureStore from 'expo-secure-store';
+import * as SecureStore from 'expo-secure-store';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
 
 export const web3Provider = ethers.getDefaultProvider('homestead');
+
+// Keys for accessing SecureStore.
+const keys = {
+  walletAddress: 'pecunia-wallet-address',
+  privateKey: 'private-key',
+  accounts: 'pecunia-accounts'
+};
 
 export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
   const hdnode = ethers.utils.HDNode.fromMnemonic(seedPhrase);
@@ -12,12 +19,12 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
 
   // Save private key to the keychain, using the wallet address as the key.
   await SecureStore.setItemAsync(
-    `${wallet.address}-private-key`,
+    `${wallet.address}-${keys.privateKey}`,
     wallet.privateKey
   );
 
   // Save address to the keychain
-  await SecureStore.setItemAsync('pecunia-wallet-address', wallet.address);
+  await SecureStore.setItemAsync(keys.walletAddress, wallet.address);
 
   const accounts = [];
 
@@ -28,33 +35,47 @@ export const importWalletFromSeedPhrase = async (seedPhrase: string) => {
     primary: true
   });
 
-  for (let i = 1; i >= 1; i++) {
-    const nextNode = hdnode.derivePath(`${DEFAULT_PATH}/${i}`);
+  let lookup = true;
+  let nextIndex = 1;
+
+  while (lookup) {
+    const nextNode = hdnode.derivePath(`${DEFAULT_PATH}/${nextIndex}`);
     const nextWallet = new ethers.Wallet(nextNode.privateKey);
 
     // Save private key to keychain.
     await SecureStore.setItemAsync(
-      `${nextWallet.address}-private-key`,
+      `${nextWallet.address}-${keys.privateKey}`,
       nextWallet.privateKey
     );
 
     // Check if wallet has previous transactions using Etherscan API (imitate Rainbow's behaviour).
-    if (hasPreviousTransactions(nextWallet.address)) {
+    if (await hasPreviousTransactions(nextWallet.address)) {
       accounts.push({
-        index: i,
-        name: `Sub Account ${i}`,
+        index: nextIndex,
+        name: `Sub Account ${nextIndex}`,
         address: nextWallet.address,
         primary: false
       });
+      nextIndex++;
     } else {
-      break;
+      lookup = false;
     }
   }
 
-  await SecureStore.setItemAsync('pecunia-accounts', JSON.stringify(accounts));
+  await SecureStore.setItemAsync(keys.accounts, JSON.stringify(accounts));
 };
 
 export const importWalletFromPrivateKey = (privateKey: string) => {
+  return new ethers.Wallet(privateKey);
+};
+
+export const loadWallet = async (walletAddress: string) => {
+  const privateKey = await SecureStore.getItemAsync(
+    `${walletAddress}-${keys.privateKey}`
+  );
+  if (!privateKey) {
+    throw new Error('Specified wallet is not saved.');
+  }
   return new ethers.Wallet(privateKey);
 };
 
@@ -74,14 +95,17 @@ export const hasPreviousTransactions = async (walletAddress: string) => {
     const parsedResponse = await response.json();
 
     // Timeout needed to avoid the 5 requests / second rate limit of etherscan API
+    let result = false;
 
     setTimeout(() => {
       if (parsedResponse.status !== '0' && parsedResponse.result.length > 0) {
-        return true;
+        result = true;
       }
 
-      return false;
+      result = false;
     }, 260);
+
+    return result;
   } catch (error) {
     return false;
   }

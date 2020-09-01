@@ -23,10 +23,11 @@ const Import: React.FC = () => {
     setLoading(true);
 
     // TODO: Check if input is private key or seed phrase.
+
     await importWalletFromSeedPhrase(seedPhrase);
     dispatch(loadAllAccounts());
 
-    navigate('Home');
+    navigate('Main');
 
     setLoading(false);
   };
