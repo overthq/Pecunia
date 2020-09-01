@@ -83,30 +83,27 @@ export const createWallet = () => {
   // Generate mnemonic seed phrase
   // Derive private key (and address).
   // Save to keychain
+  // TODO: Remember to install expo-random, to generate random bytes.
 };
 
 const ETHERSCAN_API_KEY = 'DIQGW4SCMNG3EPIV7X93DQEXWY83G5MVXJ';
 
 // Utility function borrowed from: https://github.com/rainbow-me/rainbow/blob/develop/src/utils/ethereumUtils.js
 export const hasPreviousTransactions = async (walletAddress: string) => {
-  try {
-    const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${walletAddress}&tag=latest&page=1&offset=1&apikey=${ETHERSCAN_API_KEY}`;
-    const response = await fetch(url);
-    const parsedResponse = await response.json();
-
-    // Timeout needed to avoid the 5 requests / second rate limit of etherscan API
-    let result = false;
-
-    setTimeout(() => {
-      if (parsedResponse.status !== '0' && parsedResponse.result.length > 0) {
-        result = true;
-      }
-
-      result = false;
-    }, 260);
-
-    return result;
-  } catch (error) {
-    return false;
-  }
+  return new Promise(async resolve => {
+    try {
+      const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${walletAddress}&tag=latest&page=1&offset=1&apikey=${ETHERSCAN_API_KEY}`;
+      const response = await fetch(url);
+      const parsedResponse = await response.json();
+      // Timeout needed to avoid the 5 requests / second rate limit of etherscan API
+      setTimeout(() => {
+        if (parsedResponse.status !== '0' && parsedResponse.result.length > 0) {
+          resolve(true);
+        }
+        resolve(false);
+      }, 260);
+    } catch (error) {
+      resolve(false);
+    }
+  });
 };
