@@ -14,7 +14,7 @@
     "@react-navigation/native": "^5.7.2",
     "@react-navigation/stack": "^5.8.0",
     "ethers": "^5.0.7",
-    "expo": "~38.0.8",
+    "expo": "~39.0.4",
     "expo-secure-store": "~9.0.1",
     "expo-status-bar": "^1.0.2",
     "react": "~16.11.0",
