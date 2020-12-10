@@ -4,7 +4,7 @@ Pecunia is a crypto wallet that focuses on making crypto more accessible to ever
 
 ## Motivation and Goals
 
-Currently, the adoption of crypto is hindered by the technical barrier-to-entry. Most wallets create a new paradigm, that appeals only to users who have some knowledge about the inner workings of the underlying technology. Pecunia's aim is to have a simple user experience, that's also as similar to existing mobile banking applications as possible.
+Currently, the adoption of crypto is hindered by the technical barrier-to-entry. Most wallets create a new paradigm, that appeals only to users who have some knowledge about the inner workings of the underlying technology. Pecunia's aim is to have a simple user experience, that's also as similar to existing mobile banking applications as possible. Think Google Pay, but entirely crypto-based.
 
 ## Contributing
 
