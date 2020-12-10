@@ -5,6 +5,13 @@ const DEFAULT_PATH = `m/44'/60'/0'/0`;
 
 export const web3Provider = ethers.getDefaultProvider('homestead');
 
+export const hasPreviousTransactions = async (walletAddress: string) => {
+  const transactionCount = await web3Provider.getTransactionCount(
+    walletAddress
+  );
+  return transactionCount > 0;
+};
+
 // Keys for accessing SecureStore.
 const keys = {
   walletAddress: 'pecunia-wallet-address',
@@ -69,41 +76,22 @@ export const importWalletFromPrivateKey = (privateKey: string) => {
   return new ethers.Wallet(privateKey);
 };
 
+export const loadTransactions = (walletAddress: string) => {
+  // Standard web3Provider cannot get account history, so we depend on Etherscan for that.
+  const provider = new ethers.providers.EtherscanProvider();
+  const history = provider.getHistory(walletAddress);
+  console.log({ history });
+};
+
 export const loadWallet = async (walletAddress: string) => {
   const privateKey = await SecureStore.getItemAsync(
     `${walletAddress}-${keys.privateKey}`
   );
-  if (!privateKey) {
-    throw new Error('Specified wallet is not saved.');
-  }
+  if (!privateKey) throw new Error('Specified wallet is not saved.');
   return new ethers.Wallet(privateKey);
 };
 
-export const createWallet = () => {
-  // Generate mnemonic seed phrase
-  // Derive private key (and address).
-  // Save to keychain
-  // TODO: Remember to install expo-random, to generate random bytes.
-};
-
-const ETHERSCAN_API_KEY = 'DIQGW4SCMNG3EPIV7X93DQEXWY83G5MVXJ';
-
-// Utility function borrowed from: https://github.com/rainbow-me/rainbow/blob/develop/src/utils/ethereumUtils.js
-export const hasPreviousTransactions = async (walletAddress: string) => {
-  return new Promise(async resolve => {
-    try {
-      const url = `https://api.etherscan.io/api?module=account&action=txlist&address=${walletAddress}&tag=latest&page=1&offset=1&apikey=${ETHERSCAN_API_KEY}`;
-      const response = await fetch(url);
-      const parsedResponse = await response.json();
-      // Timeout needed to avoid the 5 requests / second rate limit of etherscan API
-      setTimeout(() => {
-        if (parsedResponse.status !== '0' && parsedResponse.result.length > 0) {
-          resolve(true);
-        }
-        resolve(false);
-      }, 260);
-    } catch (error) {
-      resolve(false);
-    }
-  });
+export const createWallet = async () => {
+  const mnemonic = ethers.utils.entropyToMnemonic(ethers.utils.randomBytes(32));
+  importWalletFromSeedPhrase(mnemonic);
 };

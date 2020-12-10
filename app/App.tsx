@@ -58,16 +58,14 @@ const AppNavigator = () => {
   );
 };
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <AppNavigator />
-        </NavigationContainer>
-      </SafeAreaProvider>
-    </Provider>
-  );
-};
+const App = () => (
+  <Provider store={store}>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        <AppNavigator />
+      </NavigationContainer>
+    </SafeAreaProvider>
+  </Provider>
+);
 
 export default App;

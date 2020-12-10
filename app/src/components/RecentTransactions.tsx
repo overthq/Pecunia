@@ -26,16 +26,22 @@ const RecentTransactions = () => {
       </View>
       <FlatList
         horizontal
-        keyExtractor={transaction => transaction.hash}
+        keyExtractor={t => t.hash}
         data={transactions}
-        renderItem={({ item }) => <View>{item.hash}</View>}
+        renderItem={({ item }) => (
+          <View>
+            <Text>{item.hash}</Text>
+          </View>
+        )}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    flex: 1
+  }
 });
 
 export default RecentTransactions;
