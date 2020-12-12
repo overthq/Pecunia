@@ -95,3 +95,12 @@ export const createWallet = async () => {
   const mnemonic = ethers.utils.entropyToMnemonic(ethers.utils.randomBytes(32));
   importWalletFromSeedPhrase(mnemonic);
 };
+
+export const nukeWalletDetails = async () => {
+  await Promise.all(
+    Object.keys(keys).map(async key => {
+      await SecureStore.deleteItemAsync(key);
+    })
+  );
+  console.log('Nuked all secure wallet details');
+};
