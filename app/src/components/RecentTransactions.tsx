@@ -6,18 +6,24 @@ import {
   FlatList,
   StyleSheet
 } from 'react-native';
-// import { useAppSelector } from '../redux/store';
-
-// TODO: Move types and mock data to Redux store.
-
-interface Transaction {
-  hash: string;
-}
-
-const transactions: Transaction[] = [];
+import { useDispatch } from 'react-redux';
+import { useAppSelector } from '../redux/store';
+import { load } from '../redux/transactions/actions';
 
 const RecentTransactions = () => {
-  // const {} = useAppSelector(({ wallet }) => wallet.accounts[0].id);
+  const transactions = useAppSelector(
+    ({ transactions }) => transactions.transactions
+  );
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    console.log(transactions);
+  }, [transactions]);
+
+  React.useEffect(() => {
+    dispatch(load());
+  }, []);
+
   return (
     <View style={styles.container}>
       <View>
@@ -28,8 +34,8 @@ const RecentTransactions = () => {
       </View>
       <FlatList
         horizontal
-        keyExtractor={t => t.hash}
-        data={transactions}
+        keyExtractor={t => t.hash as string}
+        data={transactions || []}
         renderItem={({ item }) => (
           <View>
             <Text>{item.hash}</Text>

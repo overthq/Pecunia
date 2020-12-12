@@ -76,10 +76,10 @@ export const importWalletFromPrivateKey = (privateKey: string) => {
   return new ethers.Wallet(privateKey);
 };
 
-export const loadTransactions = (walletAddress: string) => {
+export const loadTransactions = async (walletAddress: string) => {
   const provider = new ethers.providers.EtherscanProvider();
-  const history = provider.getHistory(walletAddress);
-  console.log({ history });
+  const history = await provider.getHistory(walletAddress);
+  return history;
 };
 
 export const loadWallet = async (walletAddress: string) => {
