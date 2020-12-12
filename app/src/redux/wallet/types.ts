@@ -9,7 +9,7 @@ export enum AccountType {
   Investment
 }
 
-export interface Account {
+export interface WalletAccount {
   id: string;
   name: string;
   address: string;
@@ -24,23 +24,17 @@ interface AccountsLoadingAction {
 
 interface LoadAccountsAction {
   type: typeof LOAD_ACCOUNTS;
-  payload: {
-    accounts: Account[];
-  };
+  payload: { accounts: WalletAccount[] };
 }
 
 interface AddAccountAction {
   type: typeof ADD_ACCOUNT;
-  payload: {
-    account: Account;
-  };
+  payload: { account: WalletAccount };
 }
 
 interface RemoveAccountAction {
   type: typeof REMOVE_ACCOUNT;
-  payload: {
-    accountId: string;
-  };
+  payload: { accountId: string };
 }
 
 export type WalletAction =

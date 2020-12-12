@@ -1,5 +1,6 @@
 import {
   WalletAction,
+  WalletAccount,
   ACCOUNTS_LOADING,
   ADD_ACCOUNT,
   REMOVE_ACCOUNT,
@@ -8,7 +9,7 @@ import {
 
 interface WalletState {
   loading: boolean;
-  accounts: Account[];
+  accounts: WalletAccount[];
   errorMessage?: string;
 }
 

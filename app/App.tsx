@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -14,7 +15,7 @@ import Import from './src/screens/Import';
 
 import Icon, { getIconName } from './src/components/Icon';
 
-import { store, useAppSelector } from './src/redux/store';
+import { persistor, store, useAppSelector } from './src/redux/store';
 
 enableScreens();
 
@@ -59,13 +60,15 @@ const AppNavigator = () => {
 };
 
 const App = () => (
-  <Provider store={store}>
-    <SafeAreaProvider>
-      <NavigationContainer>
-        <AppNavigator />
-      </NavigationContainer>
-    </SafeAreaProvider>
-  </Provider>
+  <PersistGate persistor={persistor}>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <NavigationContainer>
+          <AppNavigator />
+        </NavigationContainer>
+      </SafeAreaProvider>
+    </Provider>
+  </PersistGate>
 );
 
 export default App;

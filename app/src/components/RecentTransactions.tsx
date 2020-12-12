@@ -6,6 +6,7 @@ import {
   FlatList,
   StyleSheet
 } from 'react-native';
+// import { useAppSelector } from '../redux/store';
 
 // TODO: Move types and mock data to Redux store.
 
@@ -16,6 +17,7 @@ interface Transaction {
 const transactions: Transaction[] = [];
 
 const RecentTransactions = () => {
+  // const {} = useAppSelector(({ wallet }) => wallet.accounts[0].id);
   return (
     <View style={styles.container}>
       <View>

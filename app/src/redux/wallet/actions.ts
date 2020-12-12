@@ -1,6 +1,11 @@
 import * as SecureStore from 'expo-secure-store';
 import { AppThunk } from '../store';
-import { ACCOUNTS_LOADING, Account, ADD_ACCOUNT } from './types';
+import {
+  ACCOUNTS_LOADING,
+  WalletAccount,
+  ADD_ACCOUNT,
+  LOAD_ACCOUNTS
+} from './types';
 import { Alert } from 'react-native';
 
 export const loadAllAccounts = (): AppThunk => async dispatch => {
@@ -8,15 +13,19 @@ export const loadAllAccounts = (): AppThunk => async dispatch => {
 
   try {
     const accounts = await SecureStore.getItemAsync('pecunia-accounts');
+    console.log({ accounts });
     if (!accounts) throw new Error('No saved accounts.');
-    return JSON.parse(accounts) as Account[];
+    const parsedAccounts = JSON.parse(accounts) as WalletAccount[];
+    dispatch({ type: LOAD_ACCOUNTS, payload: { accounts: parsedAccounts } });
   } catch (error) {
     // Use Sentry to log the error.
     Alert.alert(error.message);
   }
 };
 
-export const addAccount = (account: Account): AppThunk => async dispatch => {
+export const addAccount = (
+  account: WalletAccount
+): AppThunk => async dispatch => {
   dispatch({ type: ACCOUNTS_LOADING });
 
   try {

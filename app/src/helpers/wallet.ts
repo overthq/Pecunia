@@ -77,7 +77,6 @@ export const importWalletFromPrivateKey = (privateKey: string) => {
 };
 
 export const loadTransactions = (walletAddress: string) => {
-  // Standard web3Provider cannot get account history, so we depend on Etherscan for that.
   const provider = new ethers.providers.EtherscanProvider();
   const history = provider.getHistory(walletAddress);
   console.log({ history });
@@ -87,6 +86,7 @@ export const loadWallet = async (walletAddress: string) => {
   const privateKey = await SecureStore.getItemAsync(
     `${walletAddress}-${keys.privateKey}`
   );
+  console.log({ privateKey });
   if (!privateKey) throw new Error('Specified wallet is not saved.');
   return new ethers.Wallet(privateKey);
 };

@@ -7,6 +7,7 @@ import { useAppSelector } from '../redux/store';
 
 const Home = () => {
   const accounts = useAppSelector(({ wallet: { accounts } }) => accounts);
+  console.log({ accounts });
 
   return (
     <SafeAreaView style={styles.container}>

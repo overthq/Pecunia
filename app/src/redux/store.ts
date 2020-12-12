@@ -1,4 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createStore, applyMiddleware, Action, combineReducers } from 'redux';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import thunk, { ThunkAction } from 'redux-thunk';
@@ -6,6 +6,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 
 import walletReducer from './wallet/reducer';
 import transactionsReducer from './transactions/reducer';
+import preferencesReducer from './preferences/reducer';
 
 const rootReducer = combineReducers({
   wallet: persistReducer(
@@ -15,6 +16,10 @@ const rootReducer = combineReducers({
   transactions: persistReducer(
     { key: 'transactions', storage: AsyncStorage },
     transactionsReducer
+  ),
+  preferences: persistReducer(
+    { key: 'preferences', storage: AsyncStorage },
+    preferencesReducer
   )
 });
 
