@@ -86,7 +86,6 @@ export const loadWallet = async (walletAddress: string) => {
   const privateKey = await SecureStore.getItemAsync(
     `${walletAddress}-${keys.privateKey}`
   );
-  console.log({ privateKey });
   if (!privateKey) throw new Error('Specified wallet is not saved.');
   return new ethers.Wallet(privateKey);
 };

@@ -13,7 +13,6 @@ export const loadAllAccounts = (): AppThunk => async dispatch => {
 
   try {
     const accounts = await SecureStore.getItemAsync('pecunia-accounts');
-    console.log({ accounts });
     if (!accounts) throw new Error('No saved accounts.');
     const parsedAccounts = JSON.parse(accounts) as WalletAccount[];
     dispatch({ type: LOAD_ACCOUNTS, payload: { accounts: parsedAccounts } });

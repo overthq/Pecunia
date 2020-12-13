@@ -9,6 +9,7 @@ import {
 import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../redux/store';
 import { load } from '../redux/transactions/actions';
+import TransactionStub from './TransactionStub';
 
 const RecentTransactions = () => {
   const transactions = useAppSelector(
@@ -17,30 +18,24 @@ const RecentTransactions = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    console.log(transactions);
-  }, [transactions]);
-
-  React.useEffect(() => {
     dispatch(load());
   }, []);
 
   return (
     <View style={styles.container}>
-      <View>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
         <Text>Recent Transactions</Text>
         <TouchableOpacity>
           <Text>View all</Text>
         </TouchableOpacity>
       </View>
       <FlatList
+        style={styles.list}
         horizontal
+        showsHorizontalScrollIndicator={false}
         keyExtractor={t => t.hash as string}
-        data={transactions || []}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.hash}</Text>
-          </View>
-        )}
+        data={transactions}
+        renderItem={({ item }) => <TransactionStub transaction={item} />}
       />
     </View>
   );
@@ -49,6 +44,9 @@ const RecentTransactions = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  list: {
+    height: 100
   }
 });
 
