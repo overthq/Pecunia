@@ -23,8 +23,8 @@ const RecentTransactions = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-        <Text>Recent Transactions</Text>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionTitle}>Recent Transactions</Text>
         <TouchableOpacity>
           <Text>View all</Text>
         </TouchableOpacity>
@@ -45,8 +45,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
+  sectionHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 8,
+    marginVertical: 8,
+    alignItems: 'center'
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: '500'
+  },
   list: {
-    height: 100
+    height: 100,
+    flexGrow: 0
   }
 });
 

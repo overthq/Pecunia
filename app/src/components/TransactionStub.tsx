@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Transaction } from 'ethers';
+import { toDate, formatDistance } from 'date-fns';
 
 interface TransactionStubProps {
   transaction: Transaction;
@@ -8,7 +9,9 @@ interface TransactionStubProps {
 
 const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => (
   <View style={styles.container}>
-    <Text>{transaction.hash}</Text>
+    <Text>
+      {formatDistance(Date.now(), toDate(transaction.timestamp * 1000))}
+    </Text>
   </View>
 );
 
@@ -21,7 +24,8 @@ const styles = StyleSheet.create({
     shadowColor: '#000000',
     shadowOffset: { width: 0, height: 0 },
     shadowOpacity: 0.1,
-    shadowRadius: 10
+    // shadowRadius: 10
+    shadowRadius: 4
   }
 });
 

@@ -13,22 +13,22 @@ const Home = () => {
     <SafeAreaView style={styles.container}>
       <Text>{JSON.stringify(accounts)}</Text>
       <RecentTransactions />
-      <View style={styles.fabContainer}>
+      {/*<View style={styles.fabContainer}>
         <TouchableOpacity style={styles.fab}>
           <Text style={styles.fabText}>Send</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.fab}>
           <Text style={styles.fabText}>Request</Text>
         </TouchableOpacity>
-      </View>
+			</View>*/}
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#FFFFFF'
+    flex: 1
+    // backgroundColor: '#FFFFFF'
   },
   fabContainer: {
     position: 'absolute',
