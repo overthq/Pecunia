@@ -1,26 +1,32 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 import RecentTransactions from '../components/RecentTransactions';
 import { useAppSelector } from '../redux/store';
 
 const Home = () => {
+  const { navigate } = useNavigation();
   const accounts = useAppSelector(({ wallet: { accounts } }) => accounts);
-  console.log({ accounts });
+  const primaryAccount = accounts.find(({ primary }) => primary === true);
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>{JSON.stringify(accounts)}</Text>
+      <Text>{primaryAccount?.name}</Text>
       <RecentTransactions />
-      {/*<View style={styles.fabContainer}>
-        <TouchableOpacity style={styles.fab}>
+      <View style={styles.fabContainer}>
+        <TouchableOpacity
+          onPress={() => navigate('SendAmount')}
+          activeOpacity={0.8}
+          style={styles.fab}
+        >
           <Text style={styles.fabText}>Send</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.fab}>
+        <TouchableOpacity activeOpacity={0.8} style={styles.fab}>
           <Text style={styles.fabText}>Request</Text>
         </TouchableOpacity>
-			</View>*/}
+      </View>
     </SafeAreaView>
   );
 };
@@ -28,14 +34,13 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1
-    // backgroundColor: '#FFFFFF'
   },
   fabContainer: {
     position: 'absolute',
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingHorizontal: 100,
+    paddingHorizontal: 60,
     bottom: 80
   },
   fab: {

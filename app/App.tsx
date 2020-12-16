@@ -14,47 +14,53 @@ import Wallet from './src/screens/Wallet';
 import Import from './src/screens/Import';
 
 import Icon, { getIconName } from './src/components/Icon';
-
 import { persistor, store, useAppSelector } from './src/redux/store';
+import SendAmount from './src/screens/SendAmount';
 
 enableScreens();
 
 const AppStack = createStackNavigator();
+const HomeStack = createStackNavigator();
 const MainTab = createBottomTabNavigator();
 
-const MainNavigator = () => {
-  return (
-    <MainTab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => (
-          <Icon name={getIconName(route.name)} color={color} size={28} />
-        )
-      })}
-      tabBarOptions={{
-        activeTintColor: 'black',
-        inactiveTintColor: 'gray',
-        showLabel: false
-      }}
-    >
-      <MainTab.Screen name='Home' component={Home} />
-      <MainTab.Screen name='Settings' component={Settings} />
-      <MainTab.Screen name='Wallet' component={Wallet} />
-    </MainTab.Navigator>
-  );
-};
+const MainNavigator = () => (
+  <MainTab.Navigator
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ color }) => (
+        <Icon name={getIconName(route.name)} color={color} size={28} />
+      )
+    })}
+    tabBarOptions={{
+      activeTintColor: 'black',
+      inactiveTintColor: 'gray',
+      showLabel: false
+    }}
+  >
+    <MainTab.Screen name='Home'>
+      {() => (
+        <HomeStack.Navigator headerMode='none'>
+          <HomeStack.Screen name='Overview' component={Home} />
+          <HomeStack.Screen name='SendAmount' component={SendAmount} />
+        </HomeStack.Navigator>
+      )}
+    </MainTab.Screen>
+    <MainTab.Screen name='Settings' component={Settings} />
+    <MainTab.Screen name='Wallet' component={Wallet} />
+  </MainTab.Navigator>
+);
 
 const AppNavigator = () => {
-  const { hasAccounts } = useAppSelector(({ wallet }) => ({
-    hasAccounts: wallet.accounts.length !== 0
-  }));
+  const hasAccounts = useAppSelector(
+    ({ wallet }) => wallet.accounts.length !== 0
+  );
 
   return (
-    <AppStack.Navigator
-      headerMode='none'
-      initialRouteName={hasAccounts ? 'Main' : 'Import'}
-    >
-      <AppStack.Screen name='Import' component={Import} />
-      <AppStack.Screen name='Main' component={MainNavigator} />
+    <AppStack.Navigator headerMode='none'>
+      {hasAccounts ? (
+        <AppStack.Screen name='Main' component={MainNavigator} />
+      ) : (
+        <AppStack.Screen name='Import' component={Import} />
+      )}
     </AppStack.Navigator>
   );
 };

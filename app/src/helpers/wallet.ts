@@ -76,9 +76,22 @@ export const importWalletFromPrivateKey = (privateKey: string) => {
   return new ethers.Wallet(privateKey);
 };
 
+export const deriveTransactionStatus = (transactionHash: string) => {
+  // This function returns the status of a transaction.
+  // (Not 0 or 1), but stuff like:
+  // Received, Sent, Failed, Withdrawn, Deposited and
+  // Sending, Depositing and the likes.
+};
+
 export const loadTransactions = async (walletAddress: string) => {
   const provider = new ethers.providers.EtherscanProvider();
   const history = await provider.getHistory(walletAddress);
+  // const receipts = await Promise.all(
+  //   history.map(async transaction => {
+  //     const receipt = await provider.getTransactionReceipt(transaction.hash);
+  //     return receipt;
+  //   })
+  // );
   return history;
 };
 

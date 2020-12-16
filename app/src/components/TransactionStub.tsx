@@ -7,13 +7,25 @@ interface TransactionStubProps {
   transaction: Transaction;
 }
 
-const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => (
-  <View style={styles.container}>
-    <Text>
-      {formatDistance(Date.now(), toDate(transaction.timestamp * 1000))}
-    </Text>
-  </View>
-);
+enum TransactionStatus {
+  Received = 'received',
+  Sent = 'sent',
+  Failed = 'failed'
+}
+
+const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => {
+  // TODO: Parse the correct definition of the "status" of the transaction
+  // Is it stored in the "data" field of the transaction
+
+  return (
+    <View style={styles.container}>
+      <Text>
+        {formatDistance(Date.now(), toDate(transaction.timestamp * 1000))}
+      </Text>
+      <Text>{transaction.status}</Text>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
