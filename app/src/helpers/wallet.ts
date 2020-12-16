@@ -76,11 +76,24 @@ export const importWalletFromPrivateKey = (privateKey: string) => {
   return new ethers.Wallet(privateKey);
 };
 
-export const deriveTransactionStatus = (transactionHash: string) => {
-  // This function returns the status of a transaction.
-  // (Not 0 or 1), but stuff like:
-  // Received, Sent, Failed, Withdrawn, Deposited and
-  // Sending, Depositing and the likes.
+export const deriveTransactionStatus = async (
+  transactionHash: string,
+  walletAddress: string
+) => {
+  const transactionReceipt = await web3Provider.getTransactionReceipt(
+    transactionHash
+  );
+
+  // TODO: Fix this
+  if (transactionReceipt.status === 0) return 'failed';
+
+  if (transactionReceipt.from === walletAddress) {
+    return transactionReceipt.status === 1 ? 'sent' : 'sending';
+  } else if (transactionReceipt.to === walletAddress) {
+    return transactionReceipt.status === 1 ? 'received' : 'receiving';
+  } else {
+    throw new Error('Mind your business');
+  }
 };
 
 export const loadTransactions = async (walletAddress: string) => {
