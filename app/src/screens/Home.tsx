@@ -10,6 +10,7 @@ const Home = () => {
   const { navigate } = useNavigation();
   const accounts = useAppSelector(({ wallet: { accounts } }) => accounts);
   const primaryAccount = accounts.find(({ primary }) => primary === true);
+  console.log(primaryAccount?.address);
 
   return (
     <SafeAreaView style={styles.container}>

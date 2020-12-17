@@ -6,7 +6,7 @@ import {
   StyleSheet
 } from 'react-native';
 import { useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+// import { useNavigation } from '@react-navigation/native';
 
 import Button from '../components/Button';
 import { importWalletFromSeedPhrase } from '../helpers/wallet';
@@ -17,7 +17,7 @@ const Import: React.FC = () => {
   const [seedPhrase, setSeedPhrase] = React.useState('');
 
   const dispatch = useDispatch();
-  const { navigate } = useNavigation();
+  // const { navigate } = useNavigation();
 
   const handleSubmit = async () => {
     setLoading(true);
@@ -27,7 +27,7 @@ const Import: React.FC = () => {
     await importWalletFromSeedPhrase(seedPhrase);
     dispatch(loadAllAccounts());
 
-    navigate('Main');
+    // navigate('Main');
 
     setLoading(false);
   };

@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Transaction } from 'ethers';
+import { parseEther } from '@ethersproject/units';
 import { toDate, formatDistance } from 'date-fns';
-import { deriveTransactionStatus } from '../helpers/wallet';
+import { deriveTransactionStatus, openOnEtherscan } from '../helpers/wallet';
 import { useAppSelector } from '../redux/store';
 
 interface TransactionStubProps {
@@ -17,6 +18,9 @@ type AsyncReturnType<T extends (...args: any) => any> = T extends (
   : T extends (...args: any) => infer U
   ? U
   : any;
+
+// const toWei = (ether: string) => parseEther(ether).toString();
+// const toHex = value => BigNumber.from(value).toHexString();
 
 const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => {
   const primaryAccount = useAppSelector(({ wallet }) =>
@@ -41,12 +45,16 @@ const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => openOnEtherscan(transaction.hash)}
+    >
+      <Text>{transaction.value.toString()}ETH</Text>
       <Text>
         {formatDistance(Date.now(), toDate(transaction.timestamp * 1000))}
       </Text>
       <Text>{transactionStatus}</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

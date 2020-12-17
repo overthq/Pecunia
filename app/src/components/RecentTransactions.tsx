@@ -17,10 +17,6 @@ const RecentTransactions = () => {
   );
   const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   console.log(transactions);
-  // }, [transactions]);
-
   React.useEffect(() => {
     dispatch(load());
   }, []);

@@ -1,5 +1,6 @@
 import ethers from 'ethers';
 import * as SecureStore from 'expo-secure-store';
+import { Linking } from 'react-native';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
 
@@ -99,12 +100,6 @@ export const deriveTransactionStatus = async (
 export const loadTransactions = async (walletAddress: string) => {
   const provider = new ethers.providers.EtherscanProvider();
   const history = await provider.getHistory(walletAddress);
-  // const receipts = await Promise.all(
-  //   history.map(async transaction => {
-  //     const receipt = await provider.getTransactionReceipt(transaction.hash);
-  //     return receipt;
-  //   })
-  // );
   return history;
 };
 
@@ -128,4 +123,8 @@ export const nukeWalletDetails = async () => {
     })
   );
   console.log('Nuked all secure wallet details');
+};
+
+export const openOnEtherscan = (transactionHash: string) => {
+  Linking.openURL(`https://etherscan.io/tx/${transactionHash}`);
 };
