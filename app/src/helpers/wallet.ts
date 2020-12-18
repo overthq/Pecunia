@@ -97,9 +97,10 @@ export const deriveTransactionStatus = async (
   }
 };
 
+const provider = new ethers.providers.EtherscanProvider();
 export const loadTransactions = async (walletAddress: string) => {
-  const provider = new ethers.providers.EtherscanProvider();
   const history = await provider.getHistory(walletAddress);
+  console.log(history);
   return history;
 };
 

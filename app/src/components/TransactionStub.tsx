@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
-import { Transaction } from 'ethers';
+import { Transaction, BigNumber } from 'ethers';
 import { parseEther } from '@ethersproject/units';
 import { toDate, formatDistance } from 'date-fns';
 import { deriveTransactionStatus, openOnEtherscan } from '../helpers/wallet';
@@ -18,9 +18,6 @@ type AsyncReturnType<T extends (...args: any) => any> = T extends (
   : T extends (...args: any) => infer U
   ? U
   : any;
-
-// const toWei = (ether: string) => parseEther(ether).toString();
-// const toHex = value => BigNumber.from(value).toHexString();
 
 const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => {
   const primaryAccount = useAppSelector(({ wallet }) =>
@@ -47,7 +44,9 @@ const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => {
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => openOnEtherscan(transaction.hash)}
+      onPress={() => {
+        if (transaction?.hash) openOnEtherscan(transaction.hash);
+      }}
     >
       <Text>{transaction.value.toString()}ETH</Text>
       <Text>
