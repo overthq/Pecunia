@@ -77,21 +77,32 @@ export const importWalletFromPrivateKey = (privateKey: string) => {
   return new ethers.Wallet(privateKey);
 };
 
+export enum TransactionStatus {
+  Sent = 'sent',
+  Sending = 'sending',
+  Received = 'received',
+  Receiving = 'receiving',
+  Failed = 'failed'
+}
+
 export const deriveTransactionStatus = async (
   transactionHash: string,
   walletAddress: string
-) => {
+): Promise<TransactionStatus> => {
   const transactionReceipt = await web3Provider.getTransactionReceipt(
     transactionHash
   );
 
-  // TODO: Fix this
-  if (transactionReceipt.status === 0) return 'failed';
+  if (transactionReceipt.status === 0) TransactionStatus.Failed;
 
   if (transactionReceipt.from === walletAddress) {
-    return transactionReceipt.status === 1 ? 'sent' : 'sending';
+    return transactionReceipt.status === 1
+      ? TransactionStatus.Sent
+      : TransactionStatus.Sending;
   } else if (transactionReceipt.to === walletAddress) {
-    return transactionReceipt.status === 1 ? 'received' : 'receiving';
+    return transactionReceipt.status === 1
+      ? TransactionStatus.Received
+      : TransactionStatus.Receiving;
   } else {
     throw new Error('Mind your business');
   }

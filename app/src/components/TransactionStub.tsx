@@ -3,35 +3,40 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { Transaction, BigNumber } from 'ethers';
 import { parseEther } from '@ethersproject/units';
 import { toDate, formatDistance } from 'date-fns';
-import { deriveTransactionStatus, openOnEtherscan } from '../helpers/wallet';
+import {
+  deriveTransactionStatus,
+  openOnEtherscan,
+  TransactionStatus
+} from '../helpers/wallet';
 import { useAppSelector } from '../redux/store';
 
 interface TransactionStubProps {
   transaction: Transaction;
 }
 
-// https://www.jpwilliams.dev/how-to-unpack-the-return-type-of-a-promise-in-typescript
-type AsyncReturnType<T extends (...args: any) => any> = T extends (
-  ...args: any
-) => Promise<infer U>
-  ? U
-  : T extends (...args: any) => infer U
-  ? U
-  : any;
+// Information to be parsed from the transaction:
+// Related token and amount.
+// Status of transaction: Sent, Received etc.
+// Fiat value (with current ETH exchange rate)
 
 const TransactionStub: React.FC<TransactionStubProps> = ({ transaction }) => {
   const primaryAccount = useAppSelector(({ wallet }) =>
     wallet.accounts.find(({ primary }) => primary === true)
   );
   const [transactionStatus, setTransactionStatus] = React.useState<
-    AsyncReturnType<typeof deriveTransactionStatus> | undefined
+    TransactionStatus | undefined
   >();
 
   const address = primaryAccount?.address;
+  if (!address) throw new Error('Impossible!');
+
+  // TODO: Use the transaction receipts instead of the actual transaction information to build this component.
+  // The primary reason for doing this is to avoid carrying out a potentially expensive asynchronous operation for all the transactions,
+  // especially in the render phase.
 
   React.useEffect(() => {
     (async () => {
-      if (transaction.hash && address) {
+      if (transaction.hash) {
         const parsedStatus = await deriveTransactionStatus(
           transaction.hash,
           address
