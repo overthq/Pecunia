@@ -19,7 +19,11 @@ contract SplitPayment {
 
 	function contributeSplit() external payable {
 		uint currentBalance = this.getPaymentBalance();
+
 		require(msg.value <= (totalAmount - currentBalance));
+
+		// IMPORTANT: How to add the value to the contract, or is that automatic, since this payable?
+		splitAmount[msg.sender] = msg.value;
 
 		if ((currentBalance + msg.value) == totalAmount) {
 			address(uint160(targetAddress)).transfer(this.getPaymentBalance());

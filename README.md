@@ -1,16 +1,18 @@
 # Pecunia
 
-Pecunia is a crypto wallet that focuses on making crypto more accessible to everyday users.
+Pecunia is an app that focuses on making crypto more accessible to everyday users.
 
 ## Motivation and Goals
 
-Currently, the adoption of crypto is hindered by the technical barrier-to-entry. Most wallets create a new paradigm, that appeals only to users who have some knowledge about the inner workings of the underlying technology. Pecunia's aim is to have a simple user experience, that's also as similar to existing mobile banking applications as possible. Think Google Pay, but entirely crypto-based.
+Currently, the adoption of crypto is hindered by the technical barrier-to-entry. Most wallets create a new paradigm, that appeals only to users who have some knowledge about the inner workings of the underlying technology. Pecunia's aim is to have a simple user experience, that's also as similar to existing mobile banking applications as possible.
+
+## Architecture & Design
+
+Pecunia connects to your existing wallets using [WalletConnect](https://walletconnect.org), and enables you to carry out actions using the connected wallets. We do not store any of your private keys, and require explicit permission from your wallet application to carry out any transaction. As this code is also open source, you can verify these claims.
 
 ## Contributing
 
-Positive contributions are welcome. Be sure to check out the [contribution guidelines](.github/CONTRIBUTING.md) before contributing.
-
-You can share your ideas for the project in the [Overt server](https://discord.gg/t6wVzUh) on Discord. You can also create feature requests as issues on this GitHub repository.
+Positive contributions are welcome. Be sure to check out the [contribution guidelines](.github/CONTRIBUTING.md) before contributing. You can also share your ideas for the project in the [discussions](discussions) section.
 
 ## License
 
@@ -18,4 +20,4 @@ GNU AGPLv3 License
 
 ## Author
 
-[Oluwakorede Fashokun](https://twitter.com/koredefashokun) for [Overt](https://overt.dev).
+Oluwakorede Fashokun for [Overt](https://overt.dev).
