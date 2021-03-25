@@ -12,7 +12,7 @@ Pecunia connects to your existing wallets using [WalletConnect](https://walletco
 
 ## Contributing
 
-Positive contributions are welcome. Be sure to check out the [contribution guidelines](.github/CONTRIBUTING.md) before contributing. You can also share your ideas for the project in the [discussions](discussions) section.
+Positive contributions are welcome. Be sure to check out the [contribution guidelines](.github/CONTRIBUTING.md) before contributing. You can also share your ideas for the project in the [discussions](https://github.com/overthq/Pecunia/discussions) section.
 
 ## License
 
