@@ -1,13 +1,10 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-// Send & Receive buttons and
-// Recent transactions (activity)
-
-const Home = () => {
+const Settings = () => {
   return (
     <View style={styles.container}>
-      <Text>Hello</Text>
+      <Text>Switch network</Text>
     </View>
   );
 };
@@ -18,4 +15,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default Settings;

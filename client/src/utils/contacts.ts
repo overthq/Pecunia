@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// Maybe use react-native-mmkv (faster and uses JSI).
 
 export interface Contact {
   address: string; // address or ENS
