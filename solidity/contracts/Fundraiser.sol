@@ -1,3 +1,5 @@
+pragma solidity ^0.8.4;
+
 contract Fundraiser {
 	address payable owner;
 	mapping(address => uint) public contributions; 
