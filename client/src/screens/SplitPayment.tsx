@@ -37,8 +37,6 @@ export const SelectContacts = () => {
   );
 };
 
-// It is important to consider whether or not this is supposed be an etherless operation.
-// Fine, we won't go the etherless route, because there is no incentive.
 const SplitPayment = () => {
   return (
     <View style={styles.container}>
