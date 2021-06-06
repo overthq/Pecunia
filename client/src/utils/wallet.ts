@@ -4,8 +4,8 @@ import ethers from 'ethers';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
 
+// I'm not a huge fan of env vars in React Native, but maybe we can use one to set this instead.
 const useTestnet = true;
-let activeNetwork: keyof typeof networks = 'polygon';
 
 const networks = {
   optimism: {
@@ -23,12 +23,14 @@ const networks = {
 };
 
 // Ensure that Matic, Arbitrum and Optimism all support this provider style.
-const web3Provider = new ethers.providers.JsonRpcProvider(
-  networks[activeNetwork][useTestnet ? 'testnet' : 'mainnet']
+export let web3Provider = new ethers.providers.JsonRpcProvider(
+  networks.polygon[useTestnet ? 'testnet' : 'mainnet']
 );
 
 export const setNetwork = (network: keyof typeof networks) => {
-  activeNetwork = network;
+  web3Provider = new ethers.providers.JsonRpcProvider(
+    networks[network][useTestnet ? 'testnet' : 'mainnet']
+  );
 };
 
 export const hasPreviousTransactions = async (walletAddress: string) => {

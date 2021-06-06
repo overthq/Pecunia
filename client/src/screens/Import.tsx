@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TextInput, StyleSheet } from 'react-native';
 
-const Import = () => {
+const Import: React.FC = () => {
   const [seedPhrase, setSeedPhrase] = React.useState('');
 
   return (
