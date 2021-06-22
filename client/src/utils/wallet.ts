@@ -1,12 +1,9 @@
-// INFORMATION:
-// This "wallet" is intended as an experiment, to work only with L2 protocols like Polygon, Optimism, Loopring etc.
 import ethers from 'ethers';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
-
-// I'm not a huge fan of env vars in React Native, but maybe we can use one to set this instead.
 const useTestnet = true;
 
+// This setup can also support L1 rpc interfaces.
 const networks = {
   optimism: {
     mainnet: 'https://mainnet.optimism.io',
@@ -22,7 +19,6 @@ const networks = {
   }
 };
 
-// Ensure that Matic, Arbitrum and Optimism all support this provider style.
 export let web3Provider = new ethers.providers.JsonRpcProvider(
   networks.polygon[useTestnet ? 'testnet' : 'mainnet']
 );

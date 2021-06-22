@@ -33,4 +33,16 @@ export const removeContact = async (address: string) => {
   await AsyncStorage.setItem('contacts', JSON.stringify(contactsCopy));
 };
 
-export const favoriteContact = async (address: string) => {};
+export const favoriteContact = async (address: string) => {
+  const contacts = await getContacts();
+  await AsyncStorage.setItem({
+    'contacts',
+    JSON.stringify({
+      ...contacts,
+      [contact.address]: {
+        ...contacts[contact.address],
+        favorite: true
+      }
+    })
+  })
+};
