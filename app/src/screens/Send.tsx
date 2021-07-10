@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const SendAmount = () => {
+const Send = () => {
   const [amount, setAmount] = React.useState('0');
   const [mode, setMode] = React.useState<'number' | 'choice'>('number');
   const numberPad = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [0]];
@@ -93,4 +93,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default SendAmount;
+export default Send;

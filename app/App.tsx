@@ -12,10 +12,10 @@ import Home from './src/screens/Home';
 import Settings from './src/screens/Settings';
 import Wallet from './src/screens/Wallet';
 import Import from './src/screens/Import';
+import Send from './src/screens/Send';
 
 import Icon, { getIconName } from './src/components/Icon';
 import { persistor, store, useAppSelector } from './src/redux/store';
-import SendAmount from './src/screens/SendAmount';
 
 enableScreens();
 
@@ -40,7 +40,7 @@ const MainNavigator = () => (
       {() => (
         <HomeStack.Navigator headerMode='none'>
           <HomeStack.Screen name='Overview' component={Home} />
-          <HomeStack.Screen name='SendAmount' component={SendAmount} />
+          <HomeStack.Screen name='Send' component={Send} />
         </HomeStack.Navigator>
       )}
     </MainTab.Screen>
