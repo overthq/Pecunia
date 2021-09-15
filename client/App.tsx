@@ -1,15 +1,15 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Routes from './src/navigation/Routes';
 
 const App = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <NavigationContainer>
+    <NavigationContainer>
+      <SafeAreaProvider>
         <Routes />
-      </NavigationContainer>
-    </SafeAreaView>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 };
 

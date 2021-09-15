@@ -10,7 +10,8 @@ export interface Contact {
 export const getContacts = async (): Promise<Record<string, Contact>> => {
   const contacts = await AsyncStorage.getItem('contacts');
   if (!contacts) {
-    throw new Error('Contacts do not exist');
+    await AsyncStorage.setItem('contacts', '{}');
+    return {};
   }
   return JSON.parse(contacts);
 };
@@ -35,14 +36,14 @@ export const removeContact = async (address: string) => {
 
 export const favoriteContact = async (address: string) => {
   const contacts = await getContacts();
-  await AsyncStorage.setItem({
+  await AsyncStorage.setItem(
     'contacts',
     JSON.stringify({
       ...contacts,
-      [contact.address]: {
-        ...contacts[contact.address],
+      [address]: {
+        ...contacts[address],
         favorite: true
       }
     })
-  })
+  );
 };

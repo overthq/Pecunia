@@ -1,7 +1,8 @@
-import ethers from 'ethers';
+import '@ethersproject/shims';
+import { ethers } from 'ethers';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
-const useTestnet = true;
+const useTestnet = false;
 
 // This setup can also support L1 rpc interfaces.
 const networks = {
@@ -20,7 +21,7 @@ const networks = {
 };
 
 export let web3Provider = new ethers.providers.JsonRpcProvider(
-  networks.polygon[useTestnet ? 'testnet' : 'mainnet']
+  networks.optimism[useTestnet ? 'testnet' : 'mainnet']
 );
 
 export const setNetwork = (network: keyof typeof networks) => {
