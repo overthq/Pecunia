@@ -1,5 +1,9 @@
 pragma solidity ^0.8.4;
 
+// TODO:
+// - Write failing tests
+// - Support ERC20 tokens
+
 contract Fundraiser {
 	address payable owner;
 	mapping(address => uint) public contributions; 
@@ -20,15 +24,22 @@ contract Fundraiser {
 		minimumContribution = _minimumContribution;
 		fundingGoal = _fundingGoal;
 	}
+
+	modifier onlyOwner() {
+		require(payable(msg.sender) == owner, 'Only the owner can carry out this action');
+		_;
+	}
 	
 	function getContributionBalance() external view returns(uint) {
 		return (address(this)).balance;
 	}
 
-	function withdraw() {
-		// Should this be prevented until the funds are at the goal?
-		require(payable(msg.sender) == owner, 'Only the owner can withdraw funds');
+	function withdraw() public onlyOwner {
 		owner.transfer(this.getContributionBalance());
+	}
+
+	function getContribution(address _contributor) public view returns(uint) {
+		return contributions[_contributor];
 	}
 	
 	receive() external payable {
@@ -36,9 +47,5 @@ contract Fundraiser {
 		require(msg.value >= minimumContribution);
 
 		contributions[msg.sender] = msg.value;
-		
-		// if((balance + msg.value) >= fundingGoal) {
-		// 	owner.transfer(this.getContributionBalance());
-		// }
 	}
 }

@@ -1,12 +1,11 @@
 pragma solidity ^0.7.0;
 
-// Maybe we have to have a reference to the node_modules folder?
 import "@openzeppelin/contracts/ECRecovery.sol";
 import "@openzeppelin/contracts/math/SafeMath.sol";
 import "@openzeppelin/contracts/ownership/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-// Modification : https://github.com/austintgriffith/token-subscription/blob/master/Subscription/Subscription.sol
+// Modification: https://github.com/austintgriffith/token-subscription/blob/master/Subscription/Subscription.sol
 
 contract Subscription is Ownable {
 	using ECRecovery for bytes32;
@@ -41,7 +40,6 @@ contract Subscription is Ownable {
 	);
 
 	mapping(bytes32 => uint256) public nextValidTimestamp;
-
 	mapping(bytes32 => bool) public publisherSigned;
 
 	function signSubscriptionHash(bytes32 subscriptionHash) public onlyOwner returns(bool) {

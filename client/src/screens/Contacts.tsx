@@ -1,7 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, StyleSheet, FlatList, ListRenderItem } from 'react-native';
 import ContactRow from '../components/contacts/ContactRow';
 import { getContacts, Contact } from '../utils/contacts';
+
+const keyExtractor = (c: Contact) => c.address;
+
+const renderContactRow: ListRenderItem<Contact> = ({ item }) => (
+  <ContactRow contact={item} />
+);
 
 const Contacts = () => {
   const [contacts, setContacts] = React.useState<Record<string, Contact>>({});
@@ -13,12 +19,14 @@ const Contacts = () => {
     })();
   }, []);
 
+  const contactsData = React.useMemo(() => Object.values(contacts), [contacts]);
+
   return (
     <View style={styles.container}>
       <FlatList
-        keyExtractor={c => c.address}
-        data={Object.values(contacts)}
-        renderItem={({ item }) => <ContactRow contact={item} />}
+        keyExtractor={keyExtractor}
+        data={contactsData}
+        renderItem={renderContactRow}
       />
     </View>
   );
