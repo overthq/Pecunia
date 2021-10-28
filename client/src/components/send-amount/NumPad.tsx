@@ -1,18 +1,22 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 const numbers = [
   ['1', '2', '3'],
   ['4', '5', '6'],
   ['7', '8', '9'],
-  ['*', '0', '#']
+  ['*', '0', 'x']
 ];
 
 const NumPad = () => {
   const [text, setText] = React.useState('');
 
   const handlePress = (key: string) => {
-    setText(t => `${t}${key}`);
+    if (key === 'x') {
+      setText(t => t.slice(0, -1));
+    } else {
+      setText(t => `${t}${key}`);
+    }
   };
 
   return (
@@ -23,13 +27,13 @@ const NumPad = () => {
       {numbers.map((row, i) => (
         <View key={i} style={styles.row}>
           {row.map((num, j) => (
-            <TouchableOpacity
+            <Pressable
               key={j}
               style={styles.key}
               onPress={() => handlePress(num)}
             >
               <Text style={styles.text}>{num}</Text>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
       ))}
@@ -49,6 +53,7 @@ const styles = StyleSheet.create({
     height: 45
   },
   key: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
   },
