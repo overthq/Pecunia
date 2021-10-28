@@ -4,4 +4,5 @@ export type AppStackParamList = {
   Contacts: undefined;
   Settings: undefined;
   SendAmount: undefined;
+  AddContact: undefined;
 };

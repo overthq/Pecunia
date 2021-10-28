@@ -1,22 +1,39 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Pressable, StyleSheet } from 'react-native';
 
 const numbers = [
   ['1', '2', '3'],
   ['4', '5', '6'],
   ['7', '8', '9'],
-  ['-', '0', '-']
+  ['*', '0', 'x']
 ];
 
 const NumPad = () => {
+  const [text, setText] = React.useState('');
+
+  const handlePress = (key: string) => {
+    if (key === 'x') {
+      setText(t => t.slice(0, -1));
+    } else {
+      setText(t => `${t}${key}`);
+    }
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <View style={{ height: 50, justifyContent: 'center' }}>
+        <Text style={{ fontSize: 18, textAlign: 'center' }}>{text}</Text>
+      </View>
       {numbers.map((row, i) => (
         <View key={i} style={styles.row}>
           {row.map((num, j) => (
-            <TouchableOpacity key={j}>
+            <Pressable
+              key={j}
+              style={styles.key}
+              onPress={() => handlePress(num)}
+            >
               <Text style={styles.text}>{num}</Text>
-            </TouchableOpacity>
+            </Pressable>
           ))}
         </View>
       ))}
@@ -25,10 +42,20 @@ const NumPad = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   row: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    width: '100%',
+    height: 45
+  },
+  key: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   text: {
     fontSize: 18
