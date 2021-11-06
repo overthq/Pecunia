@@ -6,7 +6,6 @@ import {
   ADD_ACCOUNT,
   LOAD_ACCOUNTS
 } from './types';
-import { Alert } from 'react-native';
 
 export const loadAllAccounts = (): AppThunk => async dispatch => {
   dispatch({ type: ACCOUNTS_LOADING });
@@ -17,7 +16,7 @@ export const loadAllAccounts = (): AppThunk => async dispatch => {
     const parsedAccounts = JSON.parse(accounts) as WalletAccount[];
     dispatch({ type: LOAD_ACCOUNTS, payload: { accounts: parsedAccounts } });
   } catch (error) {
-    Alert.alert(error.message);
+    console.log(error);
   }
 };
 
@@ -31,6 +30,6 @@ export const addAccount = (
     if (!accounts) throw new Error('You have not set up your wallet yet.');
     dispatch({ type: ADD_ACCOUNT, payload: { account } });
   } catch (error) {
-    Alert.alert(error.message);
+    console.log(error);
   }
 };
