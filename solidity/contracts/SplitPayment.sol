@@ -1,4 +1,5 @@
-pragma solidity ^0.8.4;
+// SPDX-License-Identifier: GPL-3.0-or-later
+pragma solidity ^0.8.0;
 
 contract SplitPayment {
 	address[] public participants;
@@ -6,7 +7,7 @@ contract SplitPayment {
 	uint256 public totalAmount;
 	address payable public target;
 
-	constructor(address[] _participants, uint256 _totalAmount, address payable target) {
+	constructor(address[] memory _participants, uint256 _totalAmount, address payable _target) {
 		totalAmount = _totalAmount;
 		participants = _participants;
 		target = _target;
@@ -25,7 +26,9 @@ contract SplitPayment {
 		splitAmount[msg.sender] = msg.value;
 
 		if ((currentBalance + msg.value) == totalAmount) {
-			address(uint160(target)).transfer(this.getPaymentBalance());
+			(bool success, ) = target.call{ value: 10 }("");
+			require(success == true);
+			// address(uint160(target)).transfer(this.getPaymentBalance());
 		}
 	}
 }

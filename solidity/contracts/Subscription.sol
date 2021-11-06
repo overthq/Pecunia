@@ -1,19 +1,18 @@
-pragma solidity ^0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/ECRecovery.sol";
-import "@openzeppelin/contracts/math/SafeMath.sol";
-import "@openzeppelin/contracts/ownership/Ownable.sol";
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 // Modification: https://github.com/austintgriffith/token-subscription/blob/master/Subscription/Subscription.sol
 
 contract Subscription is Ownable {
-	using ECRecovery for bytes32;
-	using SafeMath for uint256;
+	using ECDSA for bytes32;
 
 	address payable publisher;
 
-	constructor() public {}
+	constructor() {}
 
 	event Received(address indexed sender, uint value);
 
@@ -48,7 +47,7 @@ contract Subscription is Ownable {
 	}
 
 	function isSubscriptionActive(bytes32 subscriptionHash, uint256 gracePeriodSeconds) external view returns (bool) {
-		return (block.timestamp >= nextValidTimestamp[subscriptionHash].add(gracePeriodSeconds));
+		return (block.timestamp >= (nextValidTimestamp[subscriptionHash] + gracePeriodSeconds));
 	}
 
 	function getSubscriptionHash(
@@ -63,8 +62,8 @@ contract Subscription is Ownable {
 	) public view returns (bytes32) {
 		return keccak256(
 			abi.encodePacked(
-				byte(0x19),
-				byte(0),
+				bytes1(0x19),
+				bytes1(0),
 				address(this),
 				from,
 				to,
@@ -80,7 +79,7 @@ contract Subscription is Ownable {
 
 	function getSubscriptionSigner(
 		bytes32 subscriptionHash,
-		bytes signature
+		bytes memory signature
 	) public pure returns (address) {
 		return subscriptionHash.toEthSignedMessageHash().recover(signature);
 	}
@@ -94,7 +93,7 @@ contract Subscription is Ownable {
 		address gasToken,
 		uint256 gasPrice,
 		address gasPayer,
-		bytes signature
+		bytes memory signature
 	) public view returns (bool) {
 		bytes32 subscriptionHash = getSubscriptionHash(
 			from, to, tokenAddress, tokenAmount, periodSeconds, gasToken, gasPrice, gasPayer
@@ -117,7 +116,7 @@ contract Subscription is Ownable {
 		address gasToken,
 		uint256 gasPrice,
 		address gasPayer,
-		bytes signature
+		bytes memory signature
 	) public returns (bool success) {
 		bytes32 subscriptionHash = getSubscriptionHash(
 			from, to, tokenAddress, tokenAmount, periodSeconds, gasToken, gasPrice, gasPayer
@@ -140,7 +139,7 @@ contract Subscription is Ownable {
 		address gasToken,
 		uint256 gasPrice,
 		address gasPayer,
-		bytes signature
+		bytes memory signature
 	) public returns (bool success) {
 		bytes32 subscriptionHash = getSubscriptionHash(
 			from, to, tokenAddress, tokenAmount, periodSeconds, gasToken, gasPrice, gasPayer
@@ -153,7 +152,7 @@ contract Subscription is Ownable {
 			"Subscription is not ready"
 		);
 			
-		nextValidTimestamp[subscriptionHash] = block.timestamp.add(periodSeconds);
+		nextValidTimestamp[subscriptionHash] = block.timestamp + periodSeconds;
 		bool result = ERC20(tokenAddress).transferFrom(from,to,tokenAmount);
 
 		if (result) {
@@ -168,10 +167,11 @@ contract Subscription is Ownable {
 
 		if (gasPrice > 0) {
 			if (gasToken == address(0)) {
-				require(from == owner || publisherSigned[subscriptionHash], "Publisher has not signed this subscriptionHash");
-				require(msg.sender.call.value(gasPrice).gas(36000)(), "Subscription contract failed to pay ether to relayer");
+				require(from == owner() || publisherSigned[subscriptionHash], "Publisher has not signed this subscriptionHash");
+				(bool s,) = msg.sender.call{ value: gasPrice, gas: 36000 }("");
+				require(s, "Subscription contract failed to pay ether to relayer");
 			} else if (gasPayer == address(this) || gasPayer == address(0)) {
-				require(from == owner || publisherSigned[subscriptionHash], "Publisher has not signed this subscriptionHash");
+				require(from == owner() || publisherSigned[subscriptionHash], "Publisher has not signed this subscriptionHash");
 				require(ERC20(gasToken).transfer(msg.sender, gasPrice), "Failed to pay gas as contract");
 			} else if (gasPayer == from) {
 				require(ERC20(gasToken).transferFrom(from, msg.sender, gasPrice), "Failed to pay gas as from account");

@@ -1,0 +1,1194 @@
+{
+  "version": "3.2",
+  "log": [
+    {
+      "Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:19",
+        "inherit": [
+          "Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:27"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Ownable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:20"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "ERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:34",
+        "version": {
+          "withMetadata": "8312288cbde91e536d7a6c1421c7acb275ccf90fa864ca3ec4a671d3c46ce513",
+          "withoutMetadata": "575c5160413ce582addde4a211c5258ab8c1045af2eeee360192553893308724",
+          "linkedWithoutMetadata": "575c5160413ce582addde4a211c5258ab8c1045af2eeee360192553893308724"
+        },
+        "inherit": [
+          "IERC20Metadata",
+          "IERC20",
+          "Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "(string,string)",
+          "name()",
+          "symbol()",
+          "decimals()",
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)",
+          "increaseAllowance(address,uint256)",
+          "decreaseAllowance(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ERC20",
+            "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:53"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "ERC20",
+              "label": "_balances",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:35"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_allowances",
+              "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:37"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_totalSupply",
+              "type": "t_uint256",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:39"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_name",
+              "type": "t_string_storage",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:41"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_symbol",
+              "type": "t_string_storage",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:42"
+            }
+          ],
+          "types": {
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+              "label": "mapping(address => mapping(address => uint256))"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:8",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:12",
+        "inherit": [
+          "IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:15",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "ECDSA": {
+        "src": "@openzeppelin/contracts/utils/cryptography/ECDSA.sol:11",
+        "version": {
+          "withMetadata": "c6eed337abe1829e546ee214df1fcec2b98b6674ee7dc667ab86d2e45197bf08",
+          "withoutMetadata": "08d24783a787f8a51dea0c166bb6f91a4f0865e02d03d749f102d332e6ead0ff",
+          "linkedWithoutMetadata": "08d24783a787f8a51dea0c166bb6f91a4f0865e02d03d749f102d332e6ead0ff"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Fundraiser": {
+        "src": "contracts/Fundraiser.sol:10",
+        "version": {
+          "withMetadata": "fa243a858e4f17c1ee9dff65908dc330047dccca82e669bbedf3648aa5fe2ad1",
+          "withoutMetadata": "37f6168565e18a2badc0850e2787ff49d4f93ddf5a6b83c7b0645c698218e03a",
+          "linkedWithoutMetadata": "37f6168565e18a2badc0850e2787ff49d4f93ddf5a6b83c7b0645c698218e03a"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256,uint256)",
+          "getMetadata()",
+          "getContributionBalance()",
+          "withdraw()",
+          "getContribution(address)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Fundraiser",
+            "src": "contracts/Fundraiser.sol:18"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Fundraiser",
+              "label": "owner",
+              "type": "t_address_payable",
+              "src": "contracts/Fundraiser.sol:11"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "contributions",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Fundraiser.sol:12"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "name",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:13"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "description",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:14"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "minimumContribution",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:15"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "fundingGoal",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:16"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "SplitPayment": {
+        "src": "contracts/SplitPayment.sol:4",
+        "version": {
+          "withMetadata": "dcb588d838355a649867e6c2dcc5c2353a4e51420ef88634e7bd1c0f7c3cef36",
+          "withoutMetadata": "9d9011550ef2406b7dc3516710666120742bea238626f1d27b49d2995fbc8470",
+          "linkedWithoutMetadata": "9d9011550ef2406b7dc3516710666120742bea238626f1d27b49d2995fbc8470"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256,address payable)",
+          "contribute()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "SplitPayment",
+            "src": "contracts/SplitPayment.sol:10"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SplitPayment",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/SplitPayment.sol:5"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitAmount",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/SplitPayment.sol:6"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "totalAmount",
+              "type": "t_uint256",
+              "src": "contracts/SplitPayment.sol:7"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "target",
+              "type": "t_address_payable",
+              "src": "contracts/SplitPayment.sol:8"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_address_payable": {
+              "label": "address payable"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "Subscription": {
+        "src": "contracts/Subscription.sol:10",
+        "version": {
+          "withMetadata": "b014ca68536725a189de9cb3e27218e455c0fedba2b7c7a3409b0cc84f63dbb3",
+          "withoutMetadata": "b3aa7172c8b84e9c857d1c62d970f69440f5278587b7c4c479f11bb4b3077434",
+          "linkedWithoutMetadata": "b3aa7172c8b84e9c857d1c62d970f69440f5278587b7c4c479f11bb4b3077434"
+        },
+        "inherit": [
+          "Ownable",
+          "Context"
+        ],
+        "libraries": [
+          "ECDSA"
+        ],
+        "methods": [
+          "()",
+          "signSubscriptionHash(bytes32)",
+          "isSubscriptionActive(bytes32,uint256)",
+          "getSubscriptionHash(address,address,address,uint256,uint256,address,uint256,address)",
+          "getSubscriptionSigner(bytes32,bytes)",
+          "isSubscriptionReady(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "cancelSubscription(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "executeSubscription(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Subscription",
+              "label": "publisher",
+              "type": "t_address_payable",
+              "src": "contracts/Subscription.sol:13"
+            },
+            {
+              "contract": "Subscription",
+              "label": "nextValidTimestamp",
+              "type": "t_mapping(t_bytes32,t_uint256)",
+              "src": "contracts/Subscription.sol:41"
+            },
+            {
+              "contract": "Subscription",
+              "label": "publisherSigned",
+              "type": "t_mapping(t_bytes32,t_bool)",
+              "src": "contracts/Subscription.sol:42"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_bytes32,t_uint256)": {
+              "label": "mapping(bytes32 => uint256)"
+            },
+            "t_bytes32": {
+              "label": "bytes32"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_bytes32,t_bool)": {
+              "label": "mapping(bytes32 => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:19",
+        "inherit": [
+          "Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:27"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Ownable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:20"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "ERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:34",
+        "version": {
+          "withMetadata": "8312288cbde91e536d7a6c1421c7acb275ccf90fa864ca3ec4a671d3c46ce513",
+          "withoutMetadata": "575c5160413ce582addde4a211c5258ab8c1045af2eeee360192553893308724",
+          "linkedWithoutMetadata": "575c5160413ce582addde4a211c5258ab8c1045af2eeee360192553893308724"
+        },
+        "inherit": [
+          "IERC20Metadata",
+          "IERC20",
+          "Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "(string,string)",
+          "name()",
+          "symbol()",
+          "decimals()",
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)",
+          "increaseAllowance(address,uint256)",
+          "decreaseAllowance(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ERC20",
+            "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:53"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "ERC20",
+              "label": "_balances",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:35"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_allowances",
+              "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:37"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_totalSupply",
+              "type": "t_uint256",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:39"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_name",
+              "type": "t_string_storage",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:41"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_symbol",
+              "type": "t_string_storage",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:42"
+            }
+          ],
+          "types": {
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+              "label": "mapping(address => mapping(address => uint256))"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:8",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:12",
+        "inherit": [
+          "IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:15",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "ECDSA": {
+        "src": "@openzeppelin/contracts/utils/cryptography/ECDSA.sol:11",
+        "version": {
+          "withMetadata": "c6eed337abe1829e546ee214df1fcec2b98b6674ee7dc667ab86d2e45197bf08",
+          "withoutMetadata": "08d24783a787f8a51dea0c166bb6f91a4f0865e02d03d749f102d332e6ead0ff",
+          "linkedWithoutMetadata": "08d24783a787f8a51dea0c166bb6f91a4f0865e02d03d749f102d332e6ead0ff"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Fundraiser": {
+        "src": "contracts/Fundraiser.sol:9",
+        "version": {
+          "withMetadata": "6dc6cf036b892b96f29e3be4822043beb53921d031a4f713acd4122aea679576",
+          "withoutMetadata": "37f6168565e18a2badc0850e2787ff49d4f93ddf5a6b83c7b0645c698218e03a",
+          "linkedWithoutMetadata": "37f6168565e18a2badc0850e2787ff49d4f93ddf5a6b83c7b0645c698218e03a"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256,uint256)",
+          "getMetadata()",
+          "getContributionBalance()",
+          "withdraw()",
+          "getContribution(address)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Fundraiser",
+            "src": "contracts/Fundraiser.sol:17"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Fundraiser",
+              "label": "owner",
+              "type": "t_address_payable",
+              "src": "contracts/Fundraiser.sol:10"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "contributions",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Fundraiser.sol:11"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "name",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:12"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "description",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:13"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "minimumContribution",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:14"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "fundingGoal",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:15"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "Subscription": {
+        "src": "contracts/Subscription.sol:9",
+        "version": {
+          "withMetadata": "15fe3712f42d3077e4bb30eb4e61133a5d48770cb5a8ec404d688275a5209d69",
+          "withoutMetadata": "b3aa7172c8b84e9c857d1c62d970f69440f5278587b7c4c479f11bb4b3077434",
+          "linkedWithoutMetadata": "b3aa7172c8b84e9c857d1c62d970f69440f5278587b7c4c479f11bb4b3077434"
+        },
+        "inherit": [
+          "Ownable",
+          "Context"
+        ],
+        "libraries": [
+          "ECDSA"
+        ],
+        "methods": [
+          "()",
+          "signSubscriptionHash(bytes32)",
+          "isSubscriptionActive(bytes32,uint256)",
+          "getSubscriptionHash(address,address,address,uint256,uint256,address,uint256,address)",
+          "getSubscriptionSigner(bytes32,bytes)",
+          "isSubscriptionReady(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "cancelSubscription(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "executeSubscription(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Subscription",
+              "label": "publisher",
+              "type": "t_address_payable",
+              "src": "contracts/Subscription.sol:12"
+            },
+            {
+              "contract": "Subscription",
+              "label": "nextValidTimestamp",
+              "type": "t_mapping(t_bytes32,t_uint256)",
+              "src": "contracts/Subscription.sol:40"
+            },
+            {
+              "contract": "Subscription",
+              "label": "publisherSigned",
+              "type": "t_mapping(t_bytes32,t_bool)",
+              "src": "contracts/Subscription.sol:41"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_bytes32,t_uint256)": {
+              "label": "mapping(bytes32 => uint256)"
+            },
+            "t_bytes32": {
+              "label": "bytes32"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_bytes32,t_bool)": {
+              "label": "mapping(bytes32 => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "Ownable": {
+        "src": "@openzeppelin/contracts/access/Ownable.sol:19",
+        "inherit": [
+          "Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "owner()",
+          "renounceOwnership()",
+          "transferOwnership(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Ownable",
+            "src": "@openzeppelin/contracts/access/Ownable.sol:27"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Ownable",
+              "label": "_owner",
+              "type": "t_address",
+              "src": "@openzeppelin/contracts/access/Ownable.sol:20"
+            }
+          ],
+          "types": {
+            "t_address": {
+              "label": "address"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "ERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:34",
+        "version": {
+          "withMetadata": "8312288cbde91e536d7a6c1421c7acb275ccf90fa864ca3ec4a671d3c46ce513",
+          "withoutMetadata": "575c5160413ce582addde4a211c5258ab8c1045af2eeee360192553893308724",
+          "linkedWithoutMetadata": "575c5160413ce582addde4a211c5258ab8c1045af2eeee360192553893308724"
+        },
+        "inherit": [
+          "IERC20Metadata",
+          "IERC20",
+          "Context"
+        ],
+        "libraries": [],
+        "methods": [
+          "(string,string)",
+          "name()",
+          "symbol()",
+          "decimals()",
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)",
+          "increaseAllowance(address,uint256)",
+          "decreaseAllowance(address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "ERC20",
+            "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:53"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "ERC20",
+              "label": "_balances",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:35"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_allowances",
+              "type": "t_mapping(t_address,t_mapping(t_address,t_uint256))",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:37"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_totalSupply",
+              "type": "t_uint256",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:39"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_name",
+              "type": "t_string_storage",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:41"
+            },
+            {
+              "contract": "ERC20",
+              "label": "_symbol",
+              "type": "t_string_storage",
+              "src": "@openzeppelin/contracts/token/ERC20/ERC20.sol:42"
+            }
+          ],
+          "types": {
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_mapping(t_address,t_uint256))": {
+              "label": "mapping(address => mapping(address => uint256))"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20": {
+        "src": "@openzeppelin/contracts/token/ERC20/IERC20.sol:8",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20Metadata": {
+        "src": "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol:12",
+        "inherit": [
+          "IERC20"
+        ],
+        "libraries": [],
+        "methods": [
+          "name()",
+          "symbol()",
+          "decimals()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Context": {
+        "src": "@openzeppelin/contracts/utils/Context.sol:15",
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "ECDSA": {
+        "src": "@openzeppelin/contracts/utils/cryptography/ECDSA.sol:11",
+        "version": {
+          "withMetadata": "c6eed337abe1829e546ee214df1fcec2b98b6674ee7dc667ab86d2e45197bf08",
+          "withoutMetadata": "08d24783a787f8a51dea0c166bb6f91a4f0865e02d03d749f102d332e6ead0ff",
+          "linkedWithoutMetadata": "08d24783a787f8a51dea0c166bb6f91a4f0865e02d03d749f102d332e6ead0ff"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Fundraiser": {
+        "src": "contracts/Fundraiser.sol:9",
+        "version": {
+          "withMetadata": "4f74c78b3d772df45140e0a3876e6341325a411a9863be43c44b62524f78208b",
+          "withoutMetadata": "7c04407d0be82bf9a5a1148db609cc40fcc158a2cc6e6bd4da8de4519c089a66",
+          "linkedWithoutMetadata": "7c04407d0be82bf9a5a1148db609cc40fcc158a2cc6e6bd4da8de4519c089a66"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256,uint256)",
+          "getMetadata()",
+          "getContributionBalance()",
+          "withdraw()",
+          "getContribution(address)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Fundraiser",
+            "src": "contracts/Fundraiser.sol:17"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Fundraiser",
+              "label": "owner",
+              "type": "t_address_payable",
+              "src": "contracts/Fundraiser.sol:10"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "contributions",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Fundraiser.sol:11"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "name",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:12"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "description",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:13"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "minimumContribution",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:14"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "fundingGoal",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:15"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "SplitPayment": {
+        "src": "contracts/SplitPayment.sol:3",
+        "version": {
+          "withMetadata": "cbedd47408efbdceaab93e3397545067e1cd62ad9e923e07028ecc9c393a4e3a",
+          "withoutMetadata": "9d9011550ef2406b7dc3516710666120742bea238626f1d27b49d2995fbc8470",
+          "linkedWithoutMetadata": "9d9011550ef2406b7dc3516710666120742bea238626f1d27b49d2995fbc8470"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256,address payable)",
+          "contribute()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "SplitPayment",
+            "src": "contracts/SplitPayment.sol:9"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SplitPayment",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/SplitPayment.sol:4"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitAmount",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/SplitPayment.sol:5"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "totalAmount",
+              "type": "t_uint256",
+              "src": "contracts/SplitPayment.sol:6"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "target",
+              "type": "t_address_payable",
+              "src": "contracts/SplitPayment.sol:7"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_address_payable": {
+              "label": "address payable"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "Subscription": {
+        "src": "contracts/Subscription.sol:9",
+        "version": {
+          "withMetadata": "3585a36f2f9e6a9921a5d986b93d57f7e157dbd8c27422fb66e810b9f286b78c",
+          "withoutMetadata": "b3aa7172c8b84e9c857d1c62d970f69440f5278587b7c4c479f11bb4b3077434",
+          "linkedWithoutMetadata": "b3aa7172c8b84e9c857d1c62d970f69440f5278587b7c4c479f11bb4b3077434"
+        },
+        "inherit": [
+          "Ownable",
+          "Context"
+        ],
+        "libraries": [
+          "ECDSA"
+        ],
+        "methods": [
+          "()",
+          "signSubscriptionHash(bytes32)",
+          "isSubscriptionActive(bytes32,uint256)",
+          "getSubscriptionHash(address,address,address,uint256,uint256,address,uint256,address)",
+          "getSubscriptionSigner(bytes32,bytes)",
+          "isSubscriptionReady(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "cancelSubscription(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "executeSubscription(address,address,address,uint256,uint256,address,uint256,address,bytes)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Subscription",
+              "label": "publisher",
+              "type": "t_address_payable",
+              "src": "contracts/Subscription.sol:12"
+            },
+            {
+              "contract": "Subscription",
+              "label": "nextValidTimestamp",
+              "type": "t_mapping(t_bytes32,t_uint256)",
+              "src": "contracts/Subscription.sol:40"
+            },
+            {
+              "contract": "Subscription",
+              "label": "publisherSigned",
+              "type": "t_mapping(t_bytes32,t_bool)",
+              "src": "contracts/Subscription.sol:41"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_bytes32,t_uint256)": {
+              "label": "mapping(bytes32 => uint256)"
+            },
+            "t_bytes32": {
+              "label": "bytes32"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_bytes32,t_bool)": {
+              "label": "mapping(bytes32 => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    }
+  ]
+}
