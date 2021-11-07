@@ -2,7 +2,7 @@
   "name": "pecunia",
   "version": "0.0.1",
   "description": "Crypto made simple",
-  "license": "GNU GPL V3",
+  "license": "GPL-3.0-or-later",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
