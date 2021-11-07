@@ -2,6 +2,92 @@
   "version": "3.2",
   "log": [
     {
+      "Fundraiser": {
+        "src": "contracts/Fundraiser.sol:9",
+        "version": {
+          "withMetadata": "73ba3943758a82c43d00852de5100a6ca3892582a56cc0e0d7d5b1b587182f0e",
+          "withoutMetadata": "37f6168565e18a2badc0850e2787ff49d4f93ddf5a6b83c7b0645c698218e03a",
+          "linkedWithoutMetadata": "37f6168565e18a2badc0850e2787ff49d4f93ddf5a6b83c7b0645c698218e03a"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256,uint256)",
+          "getMetadata()",
+          "getContributionBalance()",
+          "withdraw()",
+          "getContribution(address)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Fundraiser",
+            "src": "contracts/Fundraiser.sol:17"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Fundraiser",
+              "label": "owner",
+              "type": "t_address_payable",
+              "src": "contracts/Fundraiser.sol:10"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "contributions",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Fundraiser.sol:11"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "name",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:12"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "description",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:13"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "minimumContribution",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:14"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "fundingGoal",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:15"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
       "SplitPayment": {
         "src": "contracts/SplitPayment.sol:4",
         "version": {

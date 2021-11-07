@@ -2,7 +2,6 @@
 pragma solidity ^0.8.0;
 
 // TODO:
-// - Write failing tests
 // - Support ERC20 tokens
 
 // Figure out if withdrawals should work when the funding goal has not been met.
@@ -56,7 +55,6 @@ contract Fundraiser {
 	}
 	
 	receive() external payable {
-		// uint balance = this.getContributionBalance();
 		require(msg.value >= minimumContribution, "You have to contribute at least the minimum contribution amount");
 
 		contributions[msg.sender] = msg.value;
