@@ -2,6 +2,82 @@
   "version": "3.2",
   "log": [
     {
+      "SplitPayment": {
+        "src": "contracts/SplitPayment.sol:4",
+        "version": {
+          "withMetadata": "4b2300e570ced22499e2b8e072a5cf97be589dcd031daf9f427177d831818da3",
+          "withoutMetadata": "9a3ae367c35276d1e050fd31bdf521dd7dd0fb9576e56fd2ccae4ef64774fd67",
+          "linkedWithoutMetadata": "9a3ae367c35276d1e050fd31bdf521dd7dd0fb9576e56fd2ccae4ef64774fd67"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256[],address payable)",
+          "contribute()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "SplitPayment",
+            "src": "contracts/SplitPayment.sol:18"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SplitPayment",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/SplitPayment.sol:5"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitAmount",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/SplitPayment.sol:6"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "paid",
+              "type": "t_mapping(t_address,t_bool)",
+              "src": "contracts/SplitPayment.sol:7"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "target",
+              "type": "t_address_payable",
+              "src": "contracts/SplitPayment.sol:8"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_address_payable": {
+              "label": "address payable"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
       "Ownable": {
         "src": "@openzeppelin/contracts/access/Ownable.sol:19",
         "inherit": [

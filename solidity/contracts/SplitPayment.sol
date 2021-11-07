@@ -4,31 +4,37 @@ pragma solidity ^0.8.0;
 contract SplitPayment {
 	address[] public participants;
 	mapping (address => uint) public splitAmount;
-	uint256 public totalAmount;
+	mapping (address => bool) public paid;
 	address payable public target;
 
-	constructor(address[] memory _participants, uint256 _totalAmount, address payable _target) {
-		totalAmount = _totalAmount;
+	// TODO:
+	// 1. Instead of totalAmount, collect a mapping of address -> amountToPay
+	//    The default should be address -> (totalAmount / participants.length).
+	//    That way, we can check if everyone is paying the correct amount,
+	//    so the transaction can be reverted otherwise.
+	// 2. Support ERC20 tokens as well.
+	//    This shouldn't be to hard, as the math remains the same.
+
+	constructor(
+		address[] memory _participants,
+		uint256[] memory _participantConbributions,
+		address payable _target
+	) {
 		participants = _participants;
 		target = _target;
+
+		for (uint256 i = 0; i < _participants.length; i++) {
+			splitAmount[_participants[i]] = _participantConbributions[i];
+			paid[_participants[i]] = false;
+		}
 	}
 
-	// This contract is not complete.
-	// The edge case of when all participants have contributed some amount,
-	// but the target amount has still not been reached has to be handled.
-	// Simple workaround: only support equal splits (to reduce the math needed).
-
 	function contribute() external payable {
-		uint256 currentBalance = (address(this)).balance;
+		require(msg.value == splitAmount[msg.sender], "You have to pay the correct amount");
+		// At the end of every contribution, check if everybody has paid?
+		// Or just watch a contract and check that off-chain?
+		// Going with the latter for now.
 
-		require(msg.value <= (totalAmount - currentBalance));
-
-		splitAmount[msg.sender] = msg.value;
-
-		if ((currentBalance + msg.value) == totalAmount) {
-			(bool success, ) = target.call{ value: 10 }("");
-			require(success == true);
-			// address(uint160(target)).transfer(this.getPaymentBalance());
-		}
+		paid[msg.sender] = true;
 	}
 }
