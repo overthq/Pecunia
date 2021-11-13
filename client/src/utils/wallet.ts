@@ -5,7 +5,6 @@ import { ethers } from 'ethers';
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
 const useTestnet = false;
 
-// This setup can also support L1 rpc interfaces.
 const networks = {
   optimism: {
     mainnet: 'https://mainnet.optimism.io',
@@ -48,4 +47,8 @@ export const importWalletFromSeed = async (seedPhrase: string) => {
   const node = hdnode.derivePath(`${DEFAULT_PATH}/0`);
   const wallet = importWallet(node.privateKey);
   return wallet;
+};
+
+export const sendTransaction = () => {
+  // TODO: Use
 };

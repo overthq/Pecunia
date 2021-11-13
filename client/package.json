@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ethersproject/shims": "^5.4.0",
+    "@ethersproject/wallet": "^5.5.0",
     "@react-native-async-storage/async-storage": "^1.15.8",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^6.0.2",
