@@ -8,6 +8,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@ethersproject/abstract-provider": "^5.5.1",
     "@ethersproject/shims": "^5.4.0",
     "@ethersproject/wallet": "^5.5.0",
     "@react-native-async-storage/async-storage": "~1.15.0",
@@ -16,6 +17,7 @@
     "@react-navigation/stack": "^6.0.7",
     "@walletconnect/client": "^1.6.5",
     "@walletconnect/qrcode-modal": "^1.6.5",
+    "bip39": "^3.0.4",
     "ethers": "^5.4.6",
     "expo": "^43.0.0",
     "expo-status-bar": "~1.1.0",

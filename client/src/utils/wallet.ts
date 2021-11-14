@@ -1,6 +1,8 @@
 import 'react-native-get-random-values';
 import '@ethersproject/shims';
-import { ethers } from 'ethers';
+import { ethers, Wallet } from 'ethers';
+import { TransactionRequest } from '@ethersproject/abstract-provider';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
 const useTestnet = false;
@@ -49,6 +51,22 @@ export const importWalletFromSeed = async (seedPhrase: string) => {
   return wallet;
 };
 
-export const sendTransaction = () => {
-  // TODO: Use
+const loadPrivateKey = async () => {
+  const privateKey = await AsyncStorage.getItem('pecunia-wallet-address');
+
+  if (!privateKey) throw new Error('Private key not stored.');
+
+  return privateKey;
+};
+
+const loadWallet = async () => {
+  const privateKey = await loadPrivateKey();
+
+  return new Wallet(privateKey, web3Provider);
+};
+
+export const sendTransaction = async (request: TransactionRequest) => {
+  const wallet = await loadWallet();
+
+  wallet.sendTransaction(request);
 };
