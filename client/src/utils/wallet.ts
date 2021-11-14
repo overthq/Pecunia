@@ -70,3 +70,7 @@ export const sendTransaction = async (request: TransactionRequest) => {
 
   wallet.sendTransaction(request);
 };
+
+export const createWallet = async () => {
+  // Load seed phrase from bip39
+};
