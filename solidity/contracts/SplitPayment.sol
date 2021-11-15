@@ -8,12 +8,8 @@ contract SplitPayment {
 	address payable public target;
 
 	// TODO:
-	// 1. Instead of totalAmount, collect a mapping of address -> amountToPay
-	//    The default should be address -> (totalAmount / participants.length).
-	//    That way, we can check if everyone is paying the correct amount,
-	//    so the transaction can be reverted otherwise.
-	// 2. Support ERC20 tokens as well.
-	//    This shouldn't be to hard, as the math remains the same.
+	// Create separate contract to support ERC20 tokens as well.
+	// This shouldn't be to hard, as the math remains the same.
 
 	constructor(
 		address[] memory _participants,
