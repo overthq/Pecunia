@@ -12,7 +12,6 @@ const Import: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = React.useCallback(async () => {
-    console.log('Doing something');
     setLoading(true);
     const wallet = await importWalletFromSeed(seed);
     dispatch(saveWalletDetails(wallet.address));
