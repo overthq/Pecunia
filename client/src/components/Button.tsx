@@ -1,30 +1,42 @@
 import React from 'react';
-import { Pressable, StyleSheet, Text } from 'react-native';
+import {
+  Text,
+  Pressable,
+  ActivityIndicator,
+  StyleSheet,
+  ViewStyle
+} from 'react-native';
 
 interface ButtonProps {
-  text: string;
   onPress(): void;
+  text: string;
+  loading?: boolean;
+  style?: ViewStyle;
 }
 
-const Button: React.FC<ButtonProps> = ({ text, onPress }) => (
-  <Pressable style={styles.container} onPress={onPress}>
-    <Text>{text}</Text>
+const Button: React.FC<ButtonProps> = ({ onPress, text, loading, style }) => (
+  <Pressable style={[styles.container, style]} onPress={onPress}>
+    {loading ? (
+      <ActivityIndicator color='#FFFFFF' />
+    ) : (
+      <Text style={styles.text}>{text}</Text>
+    )}
   </Pressable>
 );
 
 const styles = StyleSheet.create({
   container: {
-    height: 40,
     width: '100%',
-    backgroundColor: '#000000',
-    borderRadius: 4,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: '#000000',
+    height: 45,
+    borderRadius: 4
   },
   text: {
-    color: '#FFFFFF',
+    fontSize: 17,
     fontWeight: '500',
-    fontSize: 17
+    color: '#FFFFFF'
   }
 });
 

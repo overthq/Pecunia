@@ -1,4 +1,4 @@
-export const LOAD_WALLET_ACTION = 'wallet/LOAD_WALLET_ACTION';
+export const LOAD_WALLET = 'wallet/LOAD_WALLET';
 
 // Initially, this wallet will only support one wallet address at a time.
 export type WalletState = {
@@ -6,7 +6,7 @@ export type WalletState = {
 };
 
 type LoadWalletAction = {
-  type: typeof LOAD_WALLET_ACTION;
+  type: typeof LOAD_WALLET;
   payload: {
     address: string;
   };
