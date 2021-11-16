@@ -40,10 +40,13 @@ export const hasPreviousTransactions = async (walletAddress: string) => {
 };
 
 export const importWallet = (privateKey: string) => {
-  const wallet = new ethers.Wallet(privateKey);
+  const wallet = new ethers.Wallet(privateKey, web3Provider);
   return wallet;
 };
 
+// This is very slow.
+// See this thread for more info:
+// https://twitter.com/mrousavy/status/1456016402578616324
 export const importWalletFromSeed = async (seedPhrase: string) => {
   const hdnode = ethers.utils.HDNode.fromMnemonic(seedPhrase);
   const node = hdnode.derivePath(`${DEFAULT_PATH}/0`);

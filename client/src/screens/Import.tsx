@@ -12,10 +12,11 @@ const Import: React.FC = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = React.useCallback(async () => {
+    console.log('Doing something');
     setLoading(true);
     const wallet = await importWalletFromSeed(seed);
-    setLoading(false);
     dispatch(saveWalletDetails(wallet.address));
+    setLoading(false);
   }, [seed]);
 
   return (
@@ -44,7 +45,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 28,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    marginVertical: 8
   },
   description: {
     fontSize: 16,
