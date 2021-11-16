@@ -5,4 +5,8 @@ export type AppStackParamList = {
   Settings: undefined;
   SendAmount: undefined;
   AddContact: undefined;
+  Transactions: undefined;
+  New: undefined;
+  SplitPayment: undefined;
+  Subscription: undefined;
 };

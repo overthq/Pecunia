@@ -1,5 +1,6 @@
 export const LOAD_WALLET_ACTION = 'wallet/LOAD_WALLET_ACTION';
 
+// Initially, this wallet will only support one wallet address at a time.
 export type WalletState = {
   address: string | null;
 };

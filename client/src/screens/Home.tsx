@@ -1,20 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { AppStackParamList } from '../types/navigation';
+import { useAppSelector } from '../redux/store';
+import Icon from '../components/Icon';
 
 const Home = () => {
   const { navigate } = useNavigation<StackNavigationProp<AppStackParamList>>();
+  const walletAddress = useAppSelector(({ wallet }) => wallet.address);
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigate('Contacts')}>
-        <Text>Contacts</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigate('SendAmount')}>
-        <Text>Send Amount</Text>
-      </TouchableOpacity>
+      {walletAddress && <Text>Wallet address: {walletAddress}</Text>}
+
+      <Pressable onPress={() => navigate('New')}>
+        <Icon name='plus' />
+      </Pressable>
     </View>
   );
 };
