@@ -1,8 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// Maybe use react-native-mmkv (faster and uses JSI).
+// TODO: Move this logic to redux and switch to react-native-mmkv
 
 export interface Contact {
-  address: string; // address or ENS
+  address: string; // address or ENS?
   name: string;
   favorite?: boolean;
 }

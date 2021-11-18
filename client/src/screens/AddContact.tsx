@@ -1,9 +1,18 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
+import Button from '../components/Button';
+import { addContact } from '../utils/contacts';
 
 const AddContact = () => {
   const [name, setName] = React.useState('');
   const [address, setAddress] = React.useState('');
+  const { goBack } = useNavigation();
+
+  const handleSubmit = async () => {
+    await addContact({ address, name });
+    goBack();
+  };
 
   return (
     <View style={styles.container}>
@@ -19,6 +28,7 @@ const AddContact = () => {
         placeholder='ETH Address'
         onChangeText={setAddress}
       />
+      <Button text='Add Contact' onPress={handleSubmit} />
     </View>
   );
 };
