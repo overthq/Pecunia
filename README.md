@@ -1,6 +1,6 @@
 # Pecunia
 
-Pecunia is an app that focuses on making crypto more accessible to everyday users.
+Pecunia is a crypto wallet that focuses on making crypto more accessible to everyday users. It enables users to send/receive crypto with low fees, and carry out other kinds of transactions like split payments, fundraisers and recurring payments (subscriptions).
 
 ## Motivation and Goals
 
@@ -10,9 +10,7 @@ In the future, Pecunia hopes to take this goal further by allowing users to perf
 
 ## Architecture & Design
 
-Pecunia connects to your existing wallets using [WalletConnect](https://walletconnect.org), and enables you to carry out actions using the connected wallets. We do not store any of your private keys, and require explicit permission from your wallet application to carry out any transaction. As this code is also open source, you can verify these claims.
-
-By design, all transactions on Pecunia take place on the [Optimism](https://optimism.io) L2, and potentially other L2s in the future (before The Merge). This is to ensure that fees remain low, as Pecunia is a utility wallet.
+By design, all transactions on Pecunia take place on the [Optimism](https://optimism.io) L2, and potentially other L2s in the future (before "The Merge"). This is to ensure that fees remain low, as Pecunia is a utility wallet.
 
 ## Contributing
 
