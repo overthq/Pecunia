@@ -6,6 +6,7 @@ import thunk, { ThunkAction } from 'redux-thunk';
 
 import walletReducer from './wallet/reducer';
 import preferencesReducer from './preferences/reducer';
+import contactsReducer from './contacts/reducer';
 
 const rootReducer = combineReducers({
   wallet: persistReducer(
@@ -15,6 +16,10 @@ const rootReducer = combineReducers({
   preferences: persistReducer(
     { key: 'preferences', storage: AsyncStorage },
     preferencesReducer
+  ),
+  contacts: persistReducer(
+    { key: 'contacts', storage: AsyncStorage },
+    contactsReducer
   )
 });
 
