@@ -1,26 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Pressable } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
-import { AppStackParamList } from '../types/navigation';
-import Icon from '../components/Icon';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import NewPaymentButton from '../components/home/NewPaymentButton';
 
 const Home = () => {
-  const { navigate } = useNavigation<StackNavigationProp<AppStackParamList>>();
-
   return (
-    <View style={styles.container}>
-      <Pressable onPress={() => navigate('New')}>
-        <Icon name='plus' />
-      </Pressable>
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <NewPaymentButton />
+    </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
 
 export default Home;

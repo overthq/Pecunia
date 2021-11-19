@@ -21,8 +21,8 @@ const NumPad = () => {
 
   return (
     <View style={styles.container}>
-      <View style={{ height: 50, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 18, textAlign: 'center' }}>{text}</Text>
+      <View style={styles.bar}>
+        <Text style={styles.barText}>{text}</Text>
       </View>
       {numbers.map((row, i) => (
         <View key={i} style={styles.row}>
@@ -51,6 +51,14 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     width: '100%',
     height: 45
+  },
+  bar: {
+    height: 50,
+    justifyContent: 'center'
+  },
+  barText: {
+    fontSize: 18,
+    textAlign: 'center'
   },
   key: {
     flex: 1,
