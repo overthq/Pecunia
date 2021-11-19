@@ -1,8 +1,20 @@
-const initialState = {};
+import {
+  PreferencesState,
+  PreferencesActionTypes,
+  UPDATE_PREFERENCE
+} from './types';
 
-const preferencesReducer = (state = initialState, action: any) => {
-  // things
+const initialState: PreferencesState = {
+  darkMode: false
+};
+
+const preferencesReducer = (
+  state = initialState,
+  action: PreferencesActionTypes
+) => {
   switch (action.type) {
+    case UPDATE_PREFERENCE:
+      return { ...state, ...action.payload };
     default:
       return state;
   }
