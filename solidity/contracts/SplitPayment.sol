@@ -1,15 +1,15 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 pragma solidity ^0.8.0;
 
+// TODO:
+// Create separate contract to support ERC20 tokens as well.
+// This shouldn't be to hard, as the math remains the same.
+
 contract SplitPayment {
 	address[] public participants;
 	mapping (address => uint) public splitAmount;
 	mapping (address => bool) public paid;
 	address payable public target;
-
-	// TODO:
-	// Create separate contract to support ERC20 tokens as well.
-	// This shouldn't be to hard, as the math remains the same.
 
 	constructor(
 		address[] memory _participants,
