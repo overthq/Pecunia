@@ -3,8 +3,9 @@ import React from 'react';
 import { View, StyleSheet, FlatList, ListRenderItem } from 'react-native';
 import Button from '../components/Button';
 import ContactRow from '../components/contacts/ContactRow';
+import { useAppSelector } from '../redux/store';
 import { AppStackParamList } from '../types/navigation';
-import { getContacts, Contact } from '../utils/contacts';
+import { Contact } from '../redux/contacts/types';
 
 const keyExtractor = (c: Contact) => c.address;
 
@@ -13,16 +14,8 @@ const renderContactRow: ListRenderItem<Contact> = ({ item }) => (
 );
 
 const Contacts = () => {
-  const [contacts, setContacts] = React.useState<Record<string, Contact>>({});
+  const contacts = useAppSelector(({ contacts }) => contacts);
   const { navigate } = useNavigation<NavigationProp<AppStackParamList>>();
-
-  React.useEffect(() => {
-    (async () => {
-      const savedContacts = await getContacts();
-      setContacts(savedContacts);
-    })();
-  }, []);
-
   const contactsData = React.useMemo(() => Object.values(contacts), [contacts]);
 
   return (

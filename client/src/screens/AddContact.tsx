@@ -1,16 +1,18 @@
 import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
+import { useDispatch } from 'react-redux';
 import Button from '../components/Button';
-import { addContact } from '../utils/contacts';
+import { addContact } from '../redux/contacts/actions';
 
 const AddContact = () => {
   const [name, setName] = React.useState('');
   const [address, setAddress] = React.useState('');
+  const dispatch = useDispatch();
   const { goBack } = useNavigation();
 
   const handleSubmit = async () => {
-    await addContact({ address, name });
+    dispatch(addContact({ address, name }));
     goBack();
   };
 
