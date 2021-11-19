@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Contact } from '../../utils/contacts';
+import { Contact } from '../../redux/contacts/types';
 
 interface ContactRowProps {
   contact: Contact;
