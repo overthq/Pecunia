@@ -9,4 +9,6 @@ export type AppStackParamList = {
   New: undefined;
   SplitPayment: undefined;
   Subscription: undefined;
+  Preferences: undefined;
+  Onboarding: undefined;
 };

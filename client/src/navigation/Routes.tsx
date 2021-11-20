@@ -9,6 +9,8 @@ import { AppStackParamList } from '../types/navigation';
 import AddContact from '../screens/AddContact';
 import Transactions from '../screens/Transactions';
 import New from '../screens/New';
+import Preferences from '../screens/Preferences';
+import Onboarding from '../screens/Onboarding';
 import { useAppSelector } from '../redux/store';
 
 const AppStack = createStackNavigator<AppStackParamList>();
@@ -27,13 +29,13 @@ const Routes = () => {
           <AppStack.Screen name='AddContact' component={AddContact} />
           <AppStack.Screen name='Transactions' component={Transactions} />
           <AppStack.Screen name='New' component={New} />
+          <AppStack.Screen name='Preferences' component={Preferences} />
         </AppStack.Group>
       ) : (
-        <AppStack.Screen
-          name='Import'
-          component={Import}
-          options={{ headerShown: false }}
-        />
+        <AppStack.Group screenOptions={{ headerShown: false }}>
+          <AppStack.Screen name='Onboarding' component={Onboarding} />
+          <AppStack.Screen name='Import' component={Import} />
+        </AppStack.Group>
       )}
     </AppStack.Navigator>
   );
