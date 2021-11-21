@@ -18,8 +18,12 @@ const Onboarding = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Onboarding</Text>
-      <Button text='Create wallet' onPress={createWallet} />
+      <Text style={styles.title}>Onboarding</Text>
+      <Button
+        text='Create wallet'
+        onPress={createWallet}
+        style={{ marginBottom: 8 }}
+      />
       <Button text='Import wallet' onPress={goToImport} />
     </SafeAreaView>
   );
@@ -28,7 +32,12 @@ const Onboarding = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 8
+    paddingHorizontal: 16
+  },
+  title: {
+    fontSize: 32,
+    fontWeight: 'bold',
+    marginVertical: 16
   }
 });
 
