@@ -1,5 +1,6 @@
 import { Contract } from 'ethers';
 import ERC20ABI from '../data/abis/ERC20.json';
+import { web3Provider } from './wallet';
 
 export const tokenlist = [
   {
@@ -20,6 +21,6 @@ export const getBalance = async (
   tokenAddress: string,
   walletAddress: string
 ) => {
-  const tokenContract = new Contract(tokenAddress, ERC20ABI);
+  const tokenContract = new Contract(tokenAddress, ERC20ABI, web3Provider);
   return await tokenContract.functions.balanceOf(walletAddress);
 };

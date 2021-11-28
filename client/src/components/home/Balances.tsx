@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/store';
 import { getBalance, tokenlist } from '../../utils/balances';
 
@@ -13,6 +13,7 @@ const Balances = () => {
           return await getBalance(token.address, walletAddress);
         })
       );
+
       console.log(data);
     }
   }, []);
@@ -22,10 +23,16 @@ const Balances = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text>Balances</Text>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    marginLeft: 8
+  }
+});
 
 export default Balances;

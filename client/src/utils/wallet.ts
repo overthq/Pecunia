@@ -22,9 +22,11 @@ const networks = {
   }
 };
 
-export let web3Provider = new ethers.providers.JsonRpcProvider(
-  networks.optimism[useTestnet ? 'testnet' : 'mainnet']
-);
+// export let web3Provider = new ethers.providers.JsonRpcProvider(
+//   networks.optimism[useTestnet ? 'testnet' : 'mainnet']
+// );
+
+export let web3Provider = ethers.providers.getDefaultProvider('mainnet');
 
 export const setNetwork = (network: keyof typeof networks) => {
   web3Provider = new ethers.providers.JsonRpcProvider(
