@@ -1,10 +1,26 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-
-// This component will display the (stablecoin) balances for this wallet.
-// Initially, this will only display USDC and DAI balances.
+import { useAppSelector } from '../../redux/store';
+import { getBalance, tokenlist } from '../../utils/balances';
 
 const Balances = () => {
+  const walletAddress = useAppSelector(({ wallet }) => wallet.address);
+
+  const fetchData = React.useCallback(async () => {
+    if (walletAddress) {
+      const data = await Promise.all(
+        tokenlist.map(async token => {
+          return await getBalance(token.address, walletAddress);
+        })
+      );
+      console.log(data);
+    }
+  }, []);
+
+  React.useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <View>
       <Text>Balances</Text>
