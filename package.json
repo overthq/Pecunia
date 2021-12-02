@@ -14,7 +14,9 @@
       "prettier --write"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "@gorhom/bottom-sheet": "^4"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.24.0",
     "@typescript-eslint/parser": "^4.24.0",

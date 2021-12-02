@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationProp, useNavigation } from '@react-navigation/core';
 import { AppStackParamList } from '../types/navigation';
 import NewSection from '../components/new/NewSection';
@@ -22,13 +22,13 @@ const kinds: Kind[] = [
   },
   {
     title: 'Split Payment',
-    description: 'Split a bill with one or more people.',
+    description: 'Split payments with one or more people.',
     destination: 'SplitPayment'
   },
   {
-    title: 'Subscription',
-    description: 'Pay someone a fixed amount every fixed interval.',
-    destination: 'Subscription'
+    title: 'Subscriptions',
+    description: 'Manage existing subscriptions or create new ones.',
+    destination: 'Subscriptions'
   }
 ];
 
@@ -43,7 +43,7 @@ const New = () => {
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       {kinds.map(k => (
         <NewSection
           key={k.title}
@@ -52,7 +52,7 @@ const New = () => {
           onPress={() => moveToDestination(k.destination)}
         />
       ))}
-    </View>
+    </SafeAreaView>
   );
 };
 

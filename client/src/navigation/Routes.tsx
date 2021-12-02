@@ -11,6 +11,8 @@ import Transactions from '../screens/Transactions';
 import New from '../screens/New';
 import Preferences from '../screens/Preferences';
 import Onboarding from '../screens/Onboarding';
+import SplitPayment from '../screens/SplitPayment';
+import Subscriptions from '../screens/Subscriptions';
 import { useAppSelector } from '../redux/store';
 
 const AppStack = createStackNavigator<AppStackParamList>();
@@ -26,6 +28,8 @@ const Routes = () => {
           <AppStack.Screen name='Contacts' component={Contacts} />
           <AppStack.Screen name='Settings' component={Settings} />
           <AppStack.Screen name='SendAmount' component={SendAmount} />
+          <AppStack.Screen name='SplitPayment' component={SplitPayment} />
+          <AppStack.Screen name='Subscriptions' component={Subscriptions} />
           <AppStack.Screen name='AddContact' component={AddContact} />
           <AppStack.Screen name='Transactions' component={Transactions} />
           <AppStack.Screen name='New' component={New} />

@@ -8,7 +8,7 @@ export type AppStackParamList = {
   Transactions: undefined;
   New: undefined;
   SplitPayment: undefined;
-  Subscription: undefined;
+  Subscriptions: undefined;
   Preferences: undefined;
   Onboarding: undefined;
 };
