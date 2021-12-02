@@ -1,26 +1,17 @@
-import { Contract } from 'ethers';
+import { Contract, utils } from 'ethers';
 import ERC20ABI from '../data/abis/ERC20.json';
 import { web3Provider } from './wallet';
-
-export const tokenlist = [
-  {
-    name: 'USD Coin',
-    symbol: 'USDC',
-    decimals: 18,
-    address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48'
-  },
-  {
-    name: 'Dai Stablecoin',
-    symbol: 'DAI',
-    decimals: 18,
-    address: '0x6B175474E89094C44Da98b954EedeAC495271d0F'
-  }
-];
 
 export const getBalance = async (
   tokenAddress: string,
   walletAddress: string
 ) => {
   const tokenContract = new Contract(tokenAddress, ERC20ABI, web3Provider);
-  return await tokenContract.functions.balanceOf(walletAddress);
+  const balance = await tokenContract.balanceOf(walletAddress);
+  const decimals = await tokenContract.decimals();
+  return utils.formatUnits(balance, decimals || 18);
+};
+
+export const getBalances = async () => {
+  // Use multicall to get multiple balances in one call
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/store';
-import { getBalance, tokenlist } from '../../utils/balances';
+import { getBalance } from '../../utils/balances';
+import tokenlist from '../../data/tokenlist.json';
 
 const Balances = () => {
   const walletAddress = useAppSelector(({ wallet }) => wallet.address);
