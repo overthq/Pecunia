@@ -13,5 +13,8 @@ export const getBalance = async (
 };
 
 export const getBalances = async () => {
-  // Use multicall to get multiple balances in one call
+  // TODO: Check multiple balances at once.
+  // Did some digging, found that Rainbow uses a custom "balance checker contract",
+  // so they can do bulk checks (works for ETH and ERC20s).
+  // See: https://github.com/rainbow-me/rainbow/blob/9e4feaa5054d18735e06e2d98ab72d3b783386d1/src/redux/fallbackExplorer.js#L262
 };
