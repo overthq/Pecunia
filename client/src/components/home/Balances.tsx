@@ -16,7 +16,6 @@ const Balances = () => {
       const balanceData: Balances = {};
 
       for (const token of tokenlist) {
-        // TODO: Use a batch call for this
         balanceData[token.address] = await getBalance(
           token.address,
           walletAddress

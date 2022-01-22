@@ -31,12 +31,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomColor: '#505050',
+    borderBottomColor: '#D3D3D3',
     borderBottomWidth: 1
   },
   title: {
     fontSize: 18,
-    fontWeight: 'bold'
+    fontWeight: '500'
   },
   description: {
     fontSize: 16

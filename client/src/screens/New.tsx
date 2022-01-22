@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/core';
 import { AppStackParamList } from '../types/navigation';
 import NewSection from '../components/new/NewSection';
@@ -32,7 +32,7 @@ const kinds: Kind[] = [
   }
 ];
 
-const New = () => {
+const New: React.FC = () => {
   const { navigate } = useNavigation<NavigationProp<AppStackParamList>>();
 
   const moveToDestination = React.useCallback(
@@ -43,7 +43,7 @@ const New = () => {
   );
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       {kinds.map(k => (
         <NewSection
           key={k.title}
@@ -52,7 +52,7 @@ const New = () => {
           onPress={() => moveToDestination(k.destination)}
         />
       ))}
-    </SafeAreaView>
+    </View>
   );
 };
 

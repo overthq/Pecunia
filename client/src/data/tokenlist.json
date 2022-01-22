@@ -10,5 +10,11 @@
     "symbol": "DAI",
     "decimals": 18,
     "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F"
+  },
+  {
+    "name": "Naira Token",
+    "symbol": "NGNT",
+    "decimals": 18,
+    "address": "0x05bbed16620b352a7f889e23e3cf427d1d379ffe"
   }
 ]

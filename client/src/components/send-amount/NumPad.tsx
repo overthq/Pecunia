@@ -1,21 +1,30 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet } from 'react-native';
+import Icon, { IconType } from '../Icon';
 
-const numbers = [
-  ['1', '2', '3'],
-  ['4', '5', '6'],
-  ['7', '8', '9'],
-  ['*', '0', 'x']
+type Key = '' | number | IconType;
+
+const numbers: Key[][] = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+  ['', 0, 'backspace']
 ];
 
 const NumPad = () => {
   const [text, setText] = React.useState('');
 
-  const handlePress = (key: string) => {
-    if (key === 'x') {
+  const handlePress = (key: Key) => {
+    if (key === 'backspace') {
       setText(t => t.slice(0, -1));
     } else {
       setText(t => `${t}${key}`);
+    }
+  };
+
+  const handleLongPress = (key: Key) => {
+    if (key === 'backspace') {
+      setText('');
     }
   };
 
@@ -26,13 +35,18 @@ const NumPad = () => {
       </View>
       {numbers.map((row, i) => (
         <View key={i} style={styles.row}>
-          {row.map((num, j) => (
+          {row.map((key, j) => (
             <Pressable
               key={j}
               style={styles.key}
-              onPress={() => handlePress(num)}
+              onPress={() => handlePress(key)}
+              onLongPress={() => handleLongPress(key)}
             >
-              <Text style={styles.text}>{num}</Text>
+              {key === 'backspace' ? (
+                <Icon name='backspace' />
+              ) : (
+                <Text style={styles.text}>{key}</Text>
+              )}
             </Pressable>
           ))}
         </View>
@@ -57,7 +71,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   barText: {
-    fontSize: 18,
+    fontSize: 24,
     textAlign: 'center'
   },
   key: {
@@ -66,7 +80,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: 18
+    fontSize: 24,
+    fontWeight: '500'
   }
 });
 

@@ -2,9 +2,7 @@ import React from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { Svg, Circle, Path } from 'react-native-svg';
 
-// All these icons are Feather Icons.
-// Don't want to install @expo/vector-icons because of the potential bloat.
-// (Although I'm not sure if it's tree-shaken)
+// These are a mix of Feather Icons and Hero Icons.
 
 const icons = {
   check: <Path d='M20 6L9 17l-5-5' />,
@@ -27,6 +25,14 @@ const icons = {
   search: <Path d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />,
   user: (
     <Path d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z' />
+  ),
+  backspace: (
+    <Path
+      strokeLinecap='round'
+      strokeLinejoin='round'
+      strokeWidth='2'
+      d='M12 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2M3 12l6.414 6.414a2 2 0 001.414.586H19a2 2 0 002-2V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586L3 12z'
+    />
   )
 };
 
