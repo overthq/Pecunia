@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     height: 45
   },
   bar: {
-    height: 50,
+    height: 60,
     justifyContent: 'center'
   },
   barText: {
