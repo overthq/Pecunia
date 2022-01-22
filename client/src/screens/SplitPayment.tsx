@@ -1,12 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useSafeArea } from 'react-native-safe-area-context';
 import NumPad from '../components/send-amount/NumPad';
+import Button from '../components/Button';
 
 const SplitPayment: React.FC = () => {
+  const { bottom } = useSafeArea();
+
+  const navigate = () => {
+    // Something
+  };
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { paddingBottom: bottom }]}>
       <Text>Enter amount:</Text>
       <NumPad />
+      <Button text='Select contacts' onPress={navigate} />
     </View>
   );
 };
