@@ -3,6 +3,252 @@
   "log": [
     {
       "Fundraiser": {
+        "src": "contracts/Fundraiser.sol:11",
+        "version": {
+          "withMetadata": "a9ee5e686bd3cb4d7f0db6877cdd14510db6b385f7498d6e59bc731c42486cac",
+          "withoutMetadata": "08f4ad4b649de796bf2fc8b18166deebd8ec2e3a1a84ece560e79fbdd0d8bfce",
+          "linkedWithoutMetadata": "08f4ad4b649de796bf2fc8b18166deebd8ec2e3a1a84ece560e79fbdd0d8bfce"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(string,string,uint256,uint256)",
+          "getMetadata()",
+          "getContributionBalance()",
+          "withdraw()",
+          "getContribution(address)",
+          "()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Fundraiser",
+            "src": "contracts/Fundraiser.sol:20"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Fundraiser",
+              "label": "owner",
+              "type": "t_address_payable",
+              "src": "contracts/Fundraiser.sol:12"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "contributions",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Fundraiser.sol:13"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "name",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:14"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "description",
+              "type": "t_string_storage",
+              "src": "contracts/Fundraiser.sol:15"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "minimumContribution",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:16"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "fundingGoal",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:17"
+            },
+            {
+              "contract": "Fundraiser",
+              "label": "amountRaised",
+              "type": "t_uint256",
+              "src": "contracts/Fundraiser.sol:18"
+            }
+          ],
+          "types": {
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_string_storage": {
+              "label": "string"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "IERC20": {
+        "src": "contracts/SplitPayment.sol:5",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "SplitPayment": {
+        "src": "contracts/SplitPayment.sol:31",
+        "version": {
+          "withMetadata": "e0abadb8b183ca74fb36044ef93c52da7229e7a882633ec2fa61e71e56813a00",
+          "withoutMetadata": "e5dc5284e3ccfd961656a3e6a3fc7952306f77f340998fa0fc6c03363f97fc07",
+          "linkedWithoutMetadata": "e5dc5284e3ccfd961656a3e6a3fc7952306f77f340998fa0fc6c03363f97fc07"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256[],address payable,uint8,address)",
+          "contribute()",
+          "contributeERC20(address,uint256)",
+          "refund()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "SplitPayment",
+            "src": "contracts/SplitPayment.sol:57"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SplitPayment",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/SplitPayment.sol:32"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitAmount",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/SplitPayment.sol:33"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "paid",
+              "type": "t_mapping(t_address,t_bool)",
+              "src": "contracts/SplitPayment.sol:34"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "payments",
+              "type": "t_mapping(t_address,t_struct(Payment)305_storage)",
+              "src": "contracts/SplitPayment.sol:35"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "target",
+              "type": "t_address_payable",
+              "src": "contracts/SplitPayment.sol:36"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitType",
+              "type": "t_enum(SplitPaymentType)298",
+              "src": "contracts/SplitPayment.sol:37"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "creator",
+              "type": "t_address",
+              "src": "contracts/SplitPayment.sol:38"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "settled",
+              "type": "t_bool",
+              "src": "contracts/SplitPayment.sol:39"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "tokenAddress",
+              "type": "t_address",
+              "src": "contracts/SplitPayment.sol:40"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_mapping(t_address,t_struct(Payment)305_storage)": {
+              "label": "mapping(address => struct SplitPayment.Payment)"
+            },
+            "t_struct(Payment)305_storage": {
+              "label": "struct SplitPayment.Payment",
+              "members": [
+                {
+                  "label": "contributor",
+                  "type": "t_address"
+                },
+                {
+                  "label": "amount",
+                  "type": "t_uint256"
+                },
+                {
+                  "label": "tokenAddress",
+                  "type": "t_address"
+                }
+              ]
+            },
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_enum(SplitPaymentType)298": {
+              "label": "enum SplitPayment.SplitPaymentType",
+              "members": [
+                "EqualSplit",
+                "Percentage",
+                "Custom"
+              ]
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "Fundraiser": {
         "src": "contracts/Fundraiser.sol:9",
         "version": {
           "withMetadata": "73ba3943758a82c43d00852de5100a6ca3892582a56cc0e0d7d5b1b587182f0e",

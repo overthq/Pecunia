@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/korede/Overt/Pecunia/solidity/contracts/Fundraiser.sol": {
-      "lastModificationDate": 1636257269849,
-      "contentHash": "c8e2b9924559a74e631e68d77525f5ee",
+      "lastModificationDate": 1644668308515,
+      "contentHash": "8bea85622cd74053b58bba2883e60b08",
       "sourceName": "contracts/Fundraiser.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -36,8 +36,8 @@
       ]
     },
     "/Users/korede/Overt/Pecunia/solidity/contracts/SplitPayment.sol": {
-      "lastModificationDate": 1636252150290,
-      "contentHash": "fe71cf41d7bdef673d5cc3bf97a40e32",
+      "lastModificationDate": 1644668368258,
+      "contentHash": "3b1bf824d3eebd5a09e8e524ffe1c1b3",
       "sourceName": "contracts/SplitPayment.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -66,6 +66,7 @@
         "^0.8.0"
       ],
       "artifacts": [
+        "IERC20",
         "SplitPayment"
       ]
     },

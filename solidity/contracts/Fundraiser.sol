@@ -52,7 +52,9 @@ contract Fundraiser {
 	}
 
 	function withdraw() public onlyOwner {
-		(bool success, ) = owner.call{ value: address(this).balance }("");
+		uint amount = address(this).balance;
+
+		(bool success, ) = owner.call{ value: amount }("");
 		require(success, "Withdraw was not successful");
 		emit WithdrawSuccessful(amount);
 	}
