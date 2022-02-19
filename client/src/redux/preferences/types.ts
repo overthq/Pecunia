@@ -1,4 +1,5 @@
 export interface PreferencesState {
+  defaultCurrency: string;
   darkMode: boolean;
 }
 

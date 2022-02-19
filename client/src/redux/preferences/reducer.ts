@@ -5,6 +5,7 @@ import {
 } from './types';
 
 const initialState: PreferencesState = {
+  defaultCurrency: 'USDC',
   darkMode: false
 };
 

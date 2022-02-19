@@ -18,6 +18,7 @@
     "@walletconnect/client": "^1.6.5",
     "@walletconnect/qrcode-modal": "^1.6.5",
     "bip39": "^3.0.4",
+    "ethcall": "^4.3.5",
     "ethers": "^5.4.6",
     "expo": "^43.0.0",
     "expo-status-bar": "~1.1.0",

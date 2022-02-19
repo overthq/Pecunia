@@ -29,7 +29,6 @@ const Routes = () => {
           <AppStack.Screen name='Home' component={Home} />
           <AppStack.Screen name='Contacts' component={Contacts} />
           <AppStack.Screen name='Settings' component={Settings} />
-          <AppStack.Screen name='SendAmount' component={SendAmount} />
           <AppStack.Screen
             name='SplitPayment'
             component={SplitPayment}
@@ -40,6 +39,9 @@ const Routes = () => {
           <AppStack.Screen name='Transactions' component={Transactions} />
           <AppStack.Screen name='New' component={New} />
           <AppStack.Screen name='Preferences' component={Preferences} />
+          <AppStack.Group screenOptions={{ presentation: 'modal' }}>
+            <AppStack.Screen name='SendAmount' component={SendAmount} />
+          </AppStack.Group>
         </AppStack.Group>
       ) : (
         <AppStack.Group screenOptions={{ headerShown: false }}>

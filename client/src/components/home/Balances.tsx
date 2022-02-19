@@ -1,26 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/store';
-import { getBalance } from '../../utils/balances';
-import tokenlist from '../../data/tokenlist.json';
+import { BalancesType, getBalances } from '../../utils/balances';
 
-type Balances = Record<string, string>;
-
-const Balances = () => {
+const Balances: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
-  const [balances, setBalances] = React.useState<Balances>({});
+  const [balances, setBalances] = React.useState<BalancesType>({});
   const walletAddress = useAppSelector(({ wallet }) => wallet.address);
 
   const fetchData = React.useCallback(async () => {
     if (walletAddress) {
-      const balanceData: Balances = {};
-
-      for (const token of tokenlist) {
-        balanceData[token.address] = await getBalance(
-          token.address,
-          walletAddress
-        );
-      }
+      const balanceData = await getBalances(walletAddress);
 
       setBalances(balanceData);
       setLoading(false);
