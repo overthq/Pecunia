@@ -321,8 +321,8 @@
       ]
     },
     "/Users/korede/Overt/Pecunia/solidity/contracts/Split.sol": {
-      "lastModificationDate": 1645350623043,
-      "contentHash": "3091ef2c27a8a0d867d16d6590bd63d0",
+      "lastModificationDate": 1645363055786,
+      "contentHash": "299f524a58b041764a58e19fce64ce7a",
       "sourceName": "contracts/Split.sol",
       "solcConfig": {
         "version": "0.8.4",

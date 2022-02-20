@@ -54,12 +54,11 @@ contract Split {
 	function _loadSplitMap() internal {
 		for (uint256 i = 0; i < participants.length; i++) {
 			splitMap[participants[i]] = splits[i];
+			paid[participants[i]] = false;
 		}
 	}
 
-	/*
-		 Accept both ETH and ERC20 payments from user.
-	 */
+	/* Accept both ETH and ERC20 payments from user. */
 
 	function contribute() external payable {
 		if (token == address(0)) {
@@ -68,10 +67,12 @@ contract Split {
 			uint balance = IERC20(token).balanceOf(msg.sender);
 			require(balance == splitMap[msg.sender]);
 		}
+
+		_settle();
 	}
 
 	/*
-		 Returns splits to all contributing participants.
+		 Return splits to all contributing participants.
 		 Loops over splits and returns the split amount to the participant.
 		 (If tney have contributed)
 	 */
@@ -93,7 +94,7 @@ contract Split {
 		 If it has, send funds to recepient.
 	 */
 
-	function settle() internal {
+	function _settle() internal {
 		uint balance;
 
 		if (token == address(0)) {
@@ -115,5 +116,13 @@ contract Split {
 
 	function tokenAddress() external view returns (address) {
 		return token;
+	}
+
+	function splitBalance() external view returns (uint256) {
+		return address(this).balance;
+	}
+
+	function splitTarget() external view returns (uint256) {
+		return target;
 	}
 }
