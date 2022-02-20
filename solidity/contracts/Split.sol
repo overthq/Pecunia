@@ -1,12 +1,25 @@
 pragma solidity ^0.8.0;
 
+interface IERC20 {
+    function totalSupply() external view returns (uint);
+    function balanceOf(address account) external view returns (uint);
+    function transfer(address recipient, uint amount) external returns (bool);
+    function allowance(address owner, address spender) external view returns (uint);
+    function approve(address spender, uint amount) external returns (bool);
+    function transferFrom(address sender, address recipient, uint amount) external returns (bool);
+
+    event Transfer(address indexed from, address indexed to, uint value);
+    event Approval(address indexed owner, address indexed spender, uint value);
+}
+
 contract Split {
 	address[] participants;
 	uint256[] splits;
 	address immutable token;
-	uint256 target;
+	uint256 immutable target;
 	address immutable recepient;
 
+	address immutable creator;
 	mapping(address => bool) paid;
 	bool settled;
 
@@ -19,9 +32,17 @@ contract Split {
 	) public {
 		participants = _participants;
 		splits = _splits;
-		token = _token,
-		target = _target,
-		recepient = _recepient
+		token = _token;
+		target = _target;
+		recepient = _recepient;
+		creator = msg.sender;
+	}
+
+	event RefundSuccessful(address indexed refundee, uint256 amount);
+
+	modifier onlyCreator {
+		require(msg.sender == creator, "Only the creator can call this function");
+		_;
 	}
 
 	/*
@@ -39,11 +60,20 @@ contract Split {
 
 	/*
 		 Returns splits to all contributing participants.
-		 Maps over contributions and returns their exact split amount.
+		 Loops over splits and returns the split amount to the participant.
+		 (If tney have contributed)
 	 */
 
 	function refund() external {
+		for (uint256 i = 0; i < participants.length; i++) {
+			address participant = participants[i];
+			if (participants[participant] == true) {
+				(bool success, ) = payable(participant).call{ value: splits[i] }("");
+				require(success == true, "Refund attempt unsuccessful");
 
+				emit RefundSuccessful(participant, splits[i]);
+			}
+		}
 	}
 
 	/*
@@ -67,5 +97,9 @@ contract Split {
 				IERC20(token).transferFrom(address(this), recepient, balance);
 			}
 		}
+	}
+
+	function tokenAddress() external view returns (address) {
+		return token;
 	}
 }
