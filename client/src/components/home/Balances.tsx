@@ -1,18 +1,26 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useAppSelector } from '../../redux/store';
-import { BalancesType, getBalances } from '../../utils/balances';
+import { Balance, getBalances } from '../../utils/balances';
 
 const Balances: React.FC = () => {
   const [loading, setLoading] = React.useState(true);
-  const [balances, setBalances] = React.useState<BalancesType>({});
-  const walletAddress = useAppSelector(({ wallet }) => wallet.address);
+  const [balances, setBalances] = React.useState<Balance[]>([]);
+  const [balance, setBalance] = React.useState<Balance>();
+  const { walletAddress, defaultCurrency } = useAppSelector(
+    ({ wallet, preferences }) => ({
+      walletAddress: wallet.address,
+      defaultCurrency: preferences.defaultCurrency
+    })
+  );
 
   const fetchData = React.useCallback(async () => {
     if (walletAddress) {
-      const balanceData = await getBalances(walletAddress);
+      const data = await getBalances(walletAddress);
 
-      setBalances(balanceData);
+      setBalance(data.find(({ symbol }) => symbol === defaultCurrency));
+
+      setBalances(data);
       setLoading(false);
     }
   }, []);
@@ -24,7 +32,16 @@ const Balances: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text>Balances</Text>
-      <Text>{loading ? 'Loading...' : JSON.stringify(balances)}</Text>
+      {loading
+        ? 'Loading...'
+        : balances.map(b => (
+            <Text key={b.address}>
+              {b.symbol}: {b.balance}
+            </Text>
+          ))}
+      <Text>
+        Default currency balance: {balance?.symbol}: {balance?.balance}
+      </Text>
     </View>
   );
 };

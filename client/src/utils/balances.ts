@@ -6,10 +6,14 @@ import { web3Provider } from './wallet';
 
 const ethcallProvider = new Provider();
 
-export type BalancesType = Record<string, string>;
+export interface Balance {
+  symbol: string;
+  address: string;
+  balance: string;
+}
 
 export const getBalances = async (walletAddress: string) => {
-  await ethcallProvider.init(web3Provider);
+  await ethcallProvider.init(web3Provider as any);
 
   const calls = tokenlist.map(t => {
     const c = new Contract(t.address, ERC20ABI);
@@ -18,14 +22,11 @@ export const getBalances = async (walletAddress: string) => {
 
   const data = (await ethcallProvider.all(calls)) as BigNumber[];
 
-  const balanceData: Record<string, string> = {};
+  const balances = tokenlist.map((t, i) => ({
+    symbol: t.symbol,
+    address: t.address,
+    balance: utils.formatUnits(data[i], t.decimals || 18)
+  }));
 
-  for (let i = 0; i < tokenlist.length; i++) {
-    balanceData[tokenlist[i].address] = utils.formatUnits(
-      data[i],
-      tokenlist[i].decimals || 18
-    );
-  }
-
-  return balanceData;
+  return balances;
 };

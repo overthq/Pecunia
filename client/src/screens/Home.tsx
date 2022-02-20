@@ -4,9 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Balances from '../components/home/Balances';
 import NewPaymentButton from '../components/home/NewPaymentButton';
 
-const Home = () => {
+const Home: React.FC = () => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.container}>
       <Balances />
       <NewPaymentButton />
       <Pressable style={styles.button}>
@@ -17,22 +17,25 @@ const Home = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF'
+  },
   button: {
     alignSelf: 'center',
     position: 'absolute',
     bottom: 80,
     justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    backgroundColor: '#000',
+    paddingVertical: 12,
+    backgroundColor: '#000000',
     borderRadius: 100,
     width: 200
   },
   buttonText: {
     fontSize: 18,
     fontWeight: '500',
-    color: '#FFF'
+    color: '#FFFFFF'
   }
 });
 

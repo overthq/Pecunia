@@ -5,34 +5,37 @@ import { TransactionRequest } from '@ethersproject/abstract-provider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const DEFAULT_PATH = `m/44'/60'/0'/0`;
-const useTestnet = false;
+// const useTestnet = false;
 
-const networks = {
-  optimism: {
-    mainnet: 'https://mainnet.optimism.io',
-    testnet: 'https://kovan.optimism.io'
-  },
-  arbitrum: {
-    mainnet: '',
-    testnet: 'https://kovan5.arbitrum.io/rpc'
-  },
-  polygon: {
-    mainnet: '',
-    testnet: 'https://rpc-mumbai.maticvigil.com'
-  }
-};
+// const networks = {
+//   optimism: {
+//     mainnet: 'https://mainnet.optimism.io',
+//     testnet: 'https://kovan.optimism.io'
+//   },
+//   arbitrum: {
+//     mainnet: '',
+//     testnet: 'https://kovan5.arbitrum.io/rpc'
+//   },
+//   polygon: {
+//     mainnet: '',
+//     testnet: 'https://rpc-mumbai.maticvigil.com'
+//   }
+// };
 
 // export let web3Provider = new ethers.providers.JsonRpcProvider(
 //   networks.optimism[useTestnet ? 'testnet' : 'mainnet']
 // );
 
-export let web3Provider = ethers.providers.getDefaultProvider('mainnet');
+export const web3Provider = new ethers.providers.InfuraProvider(
+  1,
+  'a6005434b07e43f8a289f53db4a1eef2'
+);
 
-export const setNetwork = (network: keyof typeof networks) => {
-  web3Provider = new ethers.providers.JsonRpcProvider(
-    networks[network][useTestnet ? 'testnet' : 'mainnet']
-  );
-};
+// export const setNetwork = (network: keyof typeof networks) => {
+//   web3Provider = new ethers.providers.JsonRpcProvider(
+//     networks[network][useTestnet ? 'testnet' : 'mainnet']
+//   );
+// };
 
 export const hasPreviousTransactions = async (walletAddress: string) => {
   const transactionCount = await web3Provider.getTransactionCount(

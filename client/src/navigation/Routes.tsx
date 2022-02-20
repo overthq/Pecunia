@@ -19,13 +19,13 @@ import { AppStackParamList } from '../types/navigation';
 
 const AppStack = createStackNavigator<AppStackParamList>();
 
-const Routes = () => {
+const Routes: React.FC = () => {
   const walletAddress = useAppSelector(({ wallet }) => wallet.address);
 
   return (
     <AppStack.Navigator>
       {walletAddress ? (
-        <AppStack.Group>
+        <AppStack.Group screenOptions={{ headerShown: false }}>
           <AppStack.Screen name='Home' component={Home} />
           <AppStack.Screen name='Contacts' component={Contacts} />
           <AppStack.Screen name='Settings' component={Settings} />
