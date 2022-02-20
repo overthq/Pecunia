@@ -26,7 +26,18 @@ interface IERC20 {
 // 
 // Considerations:
 // - Should the owed amount (per participant) be calculated off-chain?
-// - Should the 
+
+// SplitConfig:
+// address[] participants
+// uint256[] amounts
+// 
+
+
+// For simplicity, this implementation will not be aware of the split logic
+// All it should take is an array of addresses (participants),
+// an array of their respective amounts, and
+// target amount and address.
+
 
 contract SplitPayment {
 	address[] public participants;
