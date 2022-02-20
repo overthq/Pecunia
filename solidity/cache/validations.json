@@ -2,6 +2,388 @@
   "version": "3.2",
   "log": [
     {
+      "IERC20": {
+        "src": "contracts/Split.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Split": {
+        "src": "contracts/Split.sol:16",
+        "version": {
+          "withMetadata": "e29598e28b6fc52afd096f9b7bc3c5931450c28ecec1890fee563d0e9f1d80cf",
+          "withoutMetadata": "4b8f600158866fa55dc797261a74bd1051e9dcf0bd3b61aa9a02d4f81bae4a93",
+          "linkedWithoutMetadata": "4b8f600158866fa55dc797261a74bd1051e9dcf0bd3b61aa9a02d4f81bae4a93"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256[],address,uint256,address)",
+          "contribute()",
+          "refund()",
+          "tokenAddress()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Split",
+            "src": "contracts/Split.sol:28"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "token",
+            "src": "contracts/Split.sol:19"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "target",
+            "src": "contracts/Split.sol:20"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "recepient",
+            "src": "contracts/Split.sol:21"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "creator",
+            "src": "contracts/Split.sol:23"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Split",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/Split.sol:17"
+            },
+            {
+              "contract": "Split",
+              "label": "splits",
+              "type": "t_array(t_uint256)dyn_storage",
+              "src": "contracts/Split.sol:18"
+            },
+            {
+              "contract": "Split",
+              "label": "splitMap",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Split.sol:24"
+            },
+            {
+              "contract": "Split",
+              "label": "paid",
+              "type": "t_mapping(t_address,t_bool)",
+              "src": "contracts/Split.sol:25"
+            },
+            {
+              "contract": "Split",
+              "label": "settled",
+              "type": "t_bool",
+              "src": "contracts/Split.sol:26"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "IERC20": {
+        "src": "contracts/SplitPayment.sol:5",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Split": {
+        "src": "contracts/Split.sol:15",
+        "version": {
+          "withMetadata": "c41901b1a6af4b1ccb12b26e1a79ff7f11d568da548837d3564a04a24d216d98",
+          "withoutMetadata": "4b8f600158866fa55dc797261a74bd1051e9dcf0bd3b61aa9a02d4f81bae4a93",
+          "linkedWithoutMetadata": "4b8f600158866fa55dc797261a74bd1051e9dcf0bd3b61aa9a02d4f81bae4a93"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256[],address,uint256,address)",
+          "contribute()",
+          "refund()",
+          "tokenAddress()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Split",
+            "src": "contracts/Split.sol:27"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "token",
+            "src": "contracts/Split.sol:18"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "target",
+            "src": "contracts/Split.sol:19"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "recepient",
+            "src": "contracts/Split.sol:20"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "creator",
+            "src": "contracts/Split.sol:22"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Split",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/Split.sol:16"
+            },
+            {
+              "contract": "Split",
+              "label": "splits",
+              "type": "t_array(t_uint256)dyn_storage",
+              "src": "contracts/Split.sol:17"
+            },
+            {
+              "contract": "Split",
+              "label": "splitMap",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Split.sol:23"
+            },
+            {
+              "contract": "Split",
+              "label": "paid",
+              "type": "t_mapping(t_address,t_bool)",
+              "src": "contracts/Split.sol:24"
+            },
+            {
+              "contract": "Split",
+              "label": "settled",
+              "type": "t_bool",
+              "src": "contracts/Split.sol:25"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      },
+      "SplitPayment": {
+        "src": "contracts/SplitPayment.sol:42",
+        "version": {
+          "withMetadata": "12cf147df97c9cb424e7c5807b787bd0b724193e4a161ab73451d0404b13faf0",
+          "withoutMetadata": "e5dc5284e3ccfd961656a3e6a3fc7952306f77f340998fa0fc6c03363f97fc07",
+          "linkedWithoutMetadata": "e5dc5284e3ccfd961656a3e6a3fc7952306f77f340998fa0fc6c03363f97fc07"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256[],address payable,uint8,address)",
+          "contribute()",
+          "contributeERC20(address,uint256)",
+          "refund()"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "SplitPayment",
+            "src": "contracts/SplitPayment.sol:68"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "SplitPayment",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/SplitPayment.sol:43"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitAmount",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/SplitPayment.sol:44"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "paid",
+              "type": "t_mapping(t_address,t_bool)",
+              "src": "contracts/SplitPayment.sol:45"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "payments",
+              "type": "t_mapping(t_address,t_struct(Payment)476_storage)",
+              "src": "contracts/SplitPayment.sol:46"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "target",
+              "type": "t_address_payable",
+              "src": "contracts/SplitPayment.sol:47"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "splitType",
+              "type": "t_enum(SplitPaymentType)469",
+              "src": "contracts/SplitPayment.sol:48"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "creator",
+              "type": "t_address",
+              "src": "contracts/SplitPayment.sol:49"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "settled",
+              "type": "t_bool",
+              "src": "contracts/SplitPayment.sol:50"
+            },
+            {
+              "contract": "SplitPayment",
+              "label": "tokenAddress",
+              "type": "t_address",
+              "src": "contracts/SplitPayment.sol:51"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            },
+            "t_mapping(t_address,t_struct(Payment)476_storage)": {
+              "label": "mapping(address => struct SplitPayment.Payment)"
+            },
+            "t_struct(Payment)476_storage": {
+              "label": "struct SplitPayment.Payment",
+              "members": [
+                {
+                  "label": "contributor",
+                  "type": "t_address"
+                },
+                {
+                  "label": "amount",
+                  "type": "t_uint256"
+                },
+                {
+                  "label": "tokenAddress",
+                  "type": "t_address"
+                }
+              ]
+            },
+            "t_address_payable": {
+              "label": "address payable"
+            },
+            "t_enum(SplitPaymentType)469": {
+              "label": "enum SplitPayment.SplitPaymentType",
+              "members": [
+                "EqualSplit",
+                "Percentage",
+                "Custom"
+              ]
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
       "Fundraiser": {
         "src": "contracts/Fundraiser.sol:11",
         "version": {

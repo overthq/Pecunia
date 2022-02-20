@@ -36,8 +36,8 @@
       ]
     },
     "/Users/korede/Overt/Pecunia/solidity/contracts/SplitPayment.sol": {
-      "lastModificationDate": 1644668368258,
-      "contentHash": "3b1bf824d3eebd5a09e8e524ffe1c1b3",
+      "lastModificationDate": 1645243871911,
+      "contentHash": "09d8efc2f8ad48418bebcc8105cf450a",
       "sourceName": "contracts/SplitPayment.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -318,6 +318,41 @@
       ],
       "artifacts": [
         "IERC20Metadata"
+      ]
+    },
+    "/Users/korede/Overt/Pecunia/solidity/contracts/Split.sol": {
+      "lastModificationDate": 1645350623043,
+      "contentHash": "3091ef2c27a8a0d867d16d6590bd63d0",
+      "sourceName": "contracts/Split.sol",
+      "solcConfig": {
+        "version": "0.8.4",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "IERC20",
+        "Split"
       ]
     }
   }
