@@ -125,4 +125,12 @@ contract Split {
 	function splitTarget() external view returns (uint256) {
 		return target;
 	}
+
+	function shareOf(address _participant) external view returns (uint256) {
+		return splitMap[_participant];
+	}
+
+	function hasPaid(address _participant) external view returns (bool) {
+		return paid[_participant];
+	}
 }

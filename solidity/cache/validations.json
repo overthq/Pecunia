@@ -25,6 +25,134 @@
       "Split": {
         "src": "contracts/Split.sol:16",
         "version": {
+          "withMetadata": "c306e233aeb19aedc3f064ab48897c55de99d3b59dda0f1d532fdbf9524f2508",
+          "withoutMetadata": "b432ab2bc5cecf4f16cc3a533233da97d1e5dc6af71e446af0200a9e3e3978b4",
+          "linkedWithoutMetadata": "b432ab2bc5cecf4f16cc3a533233da97d1e5dc6af71e446af0200a9e3e3978b4"
+        },
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "(address[],uint256[],address,uint256,address)",
+          "contribute()",
+          "refund()",
+          "tokenAddress()",
+          "splitBalance()",
+          "splitTarget()",
+          "shareOf(address)",
+          "hasPaid(address)"
+        ],
+        "linkReferences": [],
+        "errors": [
+          {
+            "kind": "constructor",
+            "contract": "Split",
+            "src": "contracts/Split.sol:28"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "token",
+            "src": "contracts/Split.sol:19"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "target",
+            "src": "contracts/Split.sol:20"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "recepient",
+            "src": "contracts/Split.sol:21"
+          },
+          {
+            "kind": "state-variable-immutable",
+            "name": "creator",
+            "src": "contracts/Split.sol:23"
+          }
+        ],
+        "layout": {
+          "storage": [
+            {
+              "contract": "Split",
+              "label": "participants",
+              "type": "t_array(t_address)dyn_storage",
+              "src": "contracts/Split.sol:17"
+            },
+            {
+              "contract": "Split",
+              "label": "splits",
+              "type": "t_array(t_uint256)dyn_storage",
+              "src": "contracts/Split.sol:18"
+            },
+            {
+              "contract": "Split",
+              "label": "splitMap",
+              "type": "t_mapping(t_address,t_uint256)",
+              "src": "contracts/Split.sol:24"
+            },
+            {
+              "contract": "Split",
+              "label": "paid",
+              "type": "t_mapping(t_address,t_bool)",
+              "src": "contracts/Split.sol:25"
+            },
+            {
+              "contract": "Split",
+              "label": "settled",
+              "type": "t_bool",
+              "src": "contracts/Split.sol:26"
+            }
+          ],
+          "types": {
+            "t_array(t_address)dyn_storage": {
+              "label": "address[]"
+            },
+            "t_address": {
+              "label": "address"
+            },
+            "t_array(t_uint256)dyn_storage": {
+              "label": "uint256[]"
+            },
+            "t_uint256": {
+              "label": "uint256"
+            },
+            "t_mapping(t_address,t_uint256)": {
+              "label": "mapping(address => uint256)"
+            },
+            "t_mapping(t_address,t_bool)": {
+              "label": "mapping(address => bool)"
+            },
+            "t_bool": {
+              "label": "bool"
+            }
+          },
+          "layoutVersion": "1.1"
+        }
+      }
+    },
+    {
+      "IERC20": {
+        "src": "contracts/Split.sol:4",
+        "inherit": [],
+        "libraries": [],
+        "methods": [
+          "totalSupply()",
+          "balanceOf(address)",
+          "transfer(address,uint256)",
+          "allowance(address,address)",
+          "approve(address,uint256)",
+          "transferFrom(address,address,uint256)"
+        ],
+        "linkReferences": [],
+        "errors": [],
+        "layout": {
+          "storage": [],
+          "types": {},
+          "layoutVersion": "1.1"
+        }
+      },
+      "Split": {
+        "src": "contracts/Split.sol:16",
+        "version": {
           "withMetadata": "b163d7cb0ec4582bed80d9a0baab2b05a450573f2c99e3bedfd530741dc94aee",
           "withoutMetadata": "8f08881cc845f8efabe090dab4637007ded0820116c5de4ef554a382f34beaad",
           "linkedWithoutMetadata": "8f08881cc845f8efabe090dab4637007ded0820116c5de4ef554a382f34beaad"

@@ -22,6 +22,10 @@ describe('Split', () => {
     expect(await deployedSplit.splitTarget()).to.eql(
       ethers.BigNumber.from(300)
     );
+    expect(await deployedSplit.hasPaid(owner.address)).to.eq(false);
+    expect(await deployedSplit.shareOf(owner.address)).to.eql(
+      ethers.BigNumber.from(100)
+    );
   });
 
   it('should refund splits', async () => {
