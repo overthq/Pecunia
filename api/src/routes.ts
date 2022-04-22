@@ -9,7 +9,7 @@ const routes = Router();
 // /users/delete/:userId
 // /subscriptions
 // /subscriptions/new
-// /subscriptions/cancel -> probably can be handled by direct interfacing with the smart contract
+// /subscriptions/cancel -> probably can be handled by directly interfacing with the smart contract
 // /subscriptions/execute
 
 routes.post('/users/add', async (req, res) => {
