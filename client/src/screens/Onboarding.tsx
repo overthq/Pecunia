@@ -2,14 +2,22 @@ import React from 'react';
 import { StyleSheet, Text } from 'react-native';
 import { NavigationProp, useNavigation } from '@react-navigation/core';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Wallet } from '@ethersproject/wallet';
 import Button from '../components/Button';
 import { AppStackParamList } from '../types/navigation';
+import { importWalletFromSeed } from '../utils/wallet';
+import { useDispatch } from 'react-redux';
+import { saveWalletDetails } from '../redux/wallet/actions';
 
-const Onboarding = () => {
+const Onboarding: React.FC = () => {
   const { navigate } = useNavigation<NavigationProp<AppStackParamList>>();
+  const dispatch = useDispatch();
 
-  const createWallet = () => {
-    console.log('foo');
+  const createWallet = async () => {
+    const wallet = Wallet.createRandom();
+
+    const w = await importWalletFromSeed(wallet.mnemonic.phrase);
+    dispatch(saveWalletDetails(w.address));
   };
 
   const goToImport = () => {

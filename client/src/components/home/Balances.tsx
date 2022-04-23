@@ -32,13 +32,15 @@ const Balances: React.FC = () => {
   return (
     <View style={styles.container}>
       <Text>Balances</Text>
-      {loading
-        ? 'Loading...'
-        : balances.map(b => (
-            <Text key={b.address}>
-              {b.symbol}: {b.balance}
-            </Text>
-          ))}
+      {loading ? (
+        <Text>Loading...</Text>
+      ) : (
+        balances.map(b => (
+          <Text key={b.address}>
+            {b.symbol}: {b.balance}
+          </Text>
+        ))
+      )}
       <Text>
         Default currency balance: {balance?.symbol}: {balance?.balance}
       </Text>
